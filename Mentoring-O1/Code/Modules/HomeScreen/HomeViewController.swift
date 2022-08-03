@@ -10,12 +10,12 @@ class HomeViewController: UIViewController {
     }()
 
     // MARK: Properties
-    private(set) var movies: [Movie] = []
-    private let service: MoviesServiceable
+    private let viewModel: HomeViewModelProtocol
+    private var dataSource: MoviesTableViewDataSource<TopRatedTableViewCell, Movie>?
 
     // MARK: LifeCycle
-    init(service: MoviesServiceable) {
-        self.service = service
+    init(viewModel: HomeViewModelProtocol) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -26,53 +26,42 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        loadTableView()
-    }
-
-    // MARK: Methods
-    private func fetchData(completion: @escaping (Result<TopRated, RequestError>) -> Void) {
-        Task(priority: .background) {
-            let result = await service.getTopRated()
-            completion(result)
+        viewModel.movies.bind { movies in
+            self.updateDataSource(movies: movies)
         }
-    }
-
-    private func setupTableView() {
-        view.addSubview(tableView)
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-
-    private func loadTableView() {
-        fetchData { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let response):
-                self.movies = response.results
-                self.tableView.reloadData()
-            case .failure(let error):
+        viewModel.error.bind { error in
+            if let error = error {
                 self.showModal(title: "Error", message: error.customMessage)
             }
         }
     }
 
-    private func showDetail(for movie: Movie) {
-        Task(priority: .background) {
-            let result = await service.getMovieDetail(id: movie.id)
-            switch result {
-            case .success(let movieResponse):
-                showModal(
-                    title: movieResponse.originalTitle,
-                    message: movieResponse.overview
-                )
-            case .failure(let error):
-                showModal(title: "Error", message: error.customMessage)
-            }
+    // MARK: Methods
+    private func setupTableView() {
+        view.addSubview(tableView)
+        tableView.register(TopRatedTableViewCell.self, forCellReuseIdentifier: "TopRatedTableViewCell")
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.rowHeight = 150
+        tableView.delegate = self
+    }
+
+    private func updateDataSource(movies: [Movie]) {
+        self.dataSource = MoviesTableViewDataSource(cellIdentifier: "TopRatedTableViewCell",
+                                                    items: movies,
+                                                    configureCell: { cell, movie in
+            cell.configureCell(with: movie)
+        })
+
+        DispatchQueue.main.async {
+            self.tableView.dataSource = self.dataSource
+            self.tableView.reloadData()
         }
+    }
+
+    private func navigateToDetailsScreen(movieId: Int) {
     }
 
     private func showModal(title: String, message: String) {
@@ -83,19 +72,11 @@ class HomeViewController: UIViewController {
 }
 
 // MARK: - TableView Methods
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return movies.count
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = UITableViewCell()
-      cell.textLabel?.text = movies[indexPath.row].title
-      return cell
-  }
-
+extension HomeViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       tableView.deselectRow(at: indexPath, animated: true)
-      showDetail(for: movies[indexPath.row])
+      if let movieId = dataSource?.getItem(at: indexPath.row).id {
+          navigateToDetailsScreen(movieId: movieId)
+      }
   }
 }
