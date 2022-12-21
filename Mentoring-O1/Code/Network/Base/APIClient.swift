@@ -8,10 +8,7 @@ extension APIClient {
     // swiftlint:disable:next function_body_length
     func sendRequest<T: Decodable>(endpoint: Endpoint,
                                    responseModel: T.Type) async -> Result<T, RequestError> {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = endpoint.scheme
-        urlComponents.host = endpoint.host
-        urlComponents.path = endpoint.path
+        let urlComponents = endpoint.urlComponents
 
         guard let url = urlComponents.url else {
             return .failure(.invalidURL)
@@ -19,12 +16,16 @@ extension APIClient {
 
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
-        request.allHTTPHeaderFields = endpoint.header
+        if let headers = endpoint.header {
+            for (key, value) in headers {
+                request.setValue(value, forHTTPHeaderField: key)
+            }
+        }
 
         if let body = endpoint.body {
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
         }
-
+        print(url.absoluteString)
         do {
             let (data, response) = try await URLSession.shared.data(for: request, delegate: nil)
             guard let response = response as? HTTPURLResponse else {
