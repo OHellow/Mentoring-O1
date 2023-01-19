@@ -91,6 +91,8 @@ final class UpcomingViewController: UIViewController, LoadingDisplayable, UIColl
     }
 
     private func navigateToDetailsScreen(movieId: Int) {
+        let viewController = ScreenFabric.makeDetailsScene(movieId: movieId)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     private func showModal(title: String, message: String) {
