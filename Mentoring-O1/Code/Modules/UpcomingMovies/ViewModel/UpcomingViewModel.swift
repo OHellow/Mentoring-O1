@@ -35,7 +35,6 @@ final class UpcomingViewModel: UpcomingViewModelProtocol {
         Task(priority: .background) {
             startLoading.value = false
             let results = await apiService.getUpcomingMovies(page: page)
-            print(results)
             switch results {
             case .success(let results):
                 self.movies.value = processResults(results.results, currentPage: page)

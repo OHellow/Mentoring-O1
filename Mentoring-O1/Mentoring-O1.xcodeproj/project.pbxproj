@@ -21,6 +21,13 @@
 		CA21C50829529B180043231F /* DefaultRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21C50729529B180043231F /* DefaultRefreshControl.swift */; };
 		CA21C50A295321130043231F /* CollectionViewPrefetchedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21C509295321130043231F /* CollectionViewPrefetchedDataSource.swift */; };
 		CA21C50C2953EDCD0043231F /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21C50B2953EDCD0043231F /* Genre.swift */; };
+		CA33C95C2980A75D005DE009 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C95B2980A75D005DE009 /* LoginViewController.swift */; };
+		CA33C95E2980A83D005DE009 /* LoginViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C95D2980A83D005DE009 /* LoginViewProtocol.swift */; };
+		CA33C9602980B11B005DE009 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C95F2980B11B005DE009 /* LoginViewModel.swift */; };
+		CA33C9622980B5D3005DE009 /* LoginViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C9612980B5D3005DE009 /* LoginViewModelProtocol.swift */; };
+		CA33C9642980B6DF005DE009 /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C9632980B6DF005DE009 /* AuthEndpoint.swift */; };
+		CA33C9662980BBA4005DE009 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C9652980BBA4005DE009 /* AuthClient.swift */; };
+		CA33C9682980BC14005DE009 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C9672980BC14005DE009 /* AuthResponse.swift */; };
 		CA383B3E2895839F002E4408 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA383B3D2895839F002E4408 /* AppDelegate.swift */; };
 		CA383B402895839F002E4408 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA383B3F2895839F002E4408 /* SceneDelegate.swift */; };
 		CA383B422895839F002E4408 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA383B412895839F002E4408 /* UpcomingViewController.swift */; };
@@ -64,6 +71,13 @@
 		CA21C50729529B180043231F /* DefaultRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRefreshControl.swift; sourceTree = "<group>"; };
 		CA21C509295321130043231F /* CollectionViewPrefetchedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewPrefetchedDataSource.swift; sourceTree = "<group>"; };
 		CA21C50B2953EDCD0043231F /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		CA33C95B2980A75D005DE009 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CA33C95D2980A83D005DE009 /* LoginViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewProtocol.swift; sourceTree = "<group>"; };
+		CA33C95F2980B11B005DE009 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		CA33C9612980B5D3005DE009 /* LoginViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelProtocol.swift; sourceTree = "<group>"; };
+		CA33C9632980B6DF005DE009 /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
+		CA33C9652980BBA4005DE009 /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
+		CA33C9672980BC14005DE009 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		CA383B3A2895839F002E4408 /* Mentoring-O1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mentoring-O1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA383B3D2895839F002E4408 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA383B3F2895839F002E4408 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +207,33 @@
 				CA21C50729529B180043231F /* DefaultRefreshControl.swift */,
 			);
 			path = RefreshControl;
+			sourceTree = "<group>";
+		};
+		CA33C9582980A724005DE009 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CA33C95A2980A734005DE009 /* ViewModel */,
+				CA33C9592980A72F005DE009 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		CA33C9592980A72F005DE009 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA33C95B2980A75D005DE009 /* LoginViewController.swift */,
+				CA33C95D2980A83D005DE009 /* LoginViewProtocol.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA33C95A2980A734005DE009 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA33C95F2980B11B005DE009 /* LoginViewModel.swift */,
+				CA33C9612980B5D3005DE009 /* LoginViewModelProtocol.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CA383B312895839F002E4408 = {
@@ -343,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				CAF815E42897266D00B7B26E /* MoviesEndpoint.swift */,
+				CA33C9632980B6DF005DE009 /* AuthEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -351,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				CAF815E7289726B700B7B26E /* MovieClient.swift */,
+				CA33C9652980BBA4005DE009 /* AuthClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -362,6 +405,7 @@
 				CA21C4F3294B5BD10043231F /* MovieResult.swift */,
 				CAF815EC2897272800B7B26E /* TopRated.swift */,
 				CA21C50B2953EDCD0043231F /* Genre.swift */,
+				CA33C9672980BC14005DE009 /* AuthResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -389,6 +433,7 @@
 		CAF815F028972B2500B7B26E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				CA33C9582980A724005DE009 /* Login */,
 				CA8292042899CE7F00FA6BCC /* MovieDetails */,
 				CAF815EF28972B1100B7B26E /* UpcomingMovies */,
 			);
@@ -536,7 +581,9 @@
 				CA21C4F8295285A80043231F /* Paginable.swift in Sources */,
 				CAF815E52897266D00B7B26E /* MoviesEndpoint.swift in Sources */,
 				CAF815EB289726FD00B7B26E /* Movie.swift in Sources */,
+				CA33C9602980B11B005DE009 /* LoginViewModel.swift in Sources */,
 				CAF815DB289725A500B7B26E /* Endpoint.swift in Sources */,
+				CA33C9662980BBA4005DE009 /* AuthClient.swift in Sources */,
 				CAF815E8289726B700B7B26E /* MovieClient.swift in Sources */,
 				CA8291FB2899B87900FA6BCC /* UpcomingViewModel.swift in Sources */,
 				CA21C50829529B180043231F /* DefaultRefreshControl.swift in Sources */,
@@ -552,17 +599,22 @@
 				CAF815ED2897272800B7B26E /* TopRated.swift in Sources */,
 				CA21C4FB29528C9B0043231F /* DefaultLoaderView.swift in Sources */,
 				CAF815DD289725CC00B7B26E /* APIClient.swift in Sources */,
+				CA33C95C2980A75D005DE009 /* LoginViewController.swift in Sources */,
 				CA21C4EE294AB4040043231F /* UpcomingViewModelProtocol.swift in Sources */,
 				CA21C50A295321130043231F /* CollectionViewPrefetchedDataSource.swift in Sources */,
+				CA33C9682980BC14005DE009 /* AuthResponse.swift in Sources */,
 				CAF815DF289725F600B7B26E /* RequestMethod.swift in Sources */,
 				CA21C4F4294B5BD10043231F /* MovieResult.swift in Sources */,
+				CA33C9642980B6DF005DE009 /* AuthEndpoint.swift in Sources */,
 				CA784807297975090089C75B /* DetailsModel.swift in Sources */,
 				CA21C50C2953EDCD0043231F /* Genre.swift in Sources */,
 				CA383B402895839F002E4408 /* SceneDelegate.swift in Sources */,
+				CA33C95E2980A83D005DE009 /* LoginViewProtocol.swift in Sources */,
 				CA21C5052952911A0043231F /* Displaylable.swift in Sources */,
 				CAC4A64A29416A8700F7F028 /* UpcomingCellViewModel.swift in Sources */,
 				CAC4A64C29416FF800F7F028 /* VerticalFlowLayout.swift in Sources */,
 				CAC4A6482941618500F7F028 /* DefaultCollectionViewDataSource.swift in Sources */,
+				CA33C9622980B5D3005DE009 /* LoginViewModelProtocol.swift in Sources */,
 				CA21C4F6295283370043231F /* UpcomingCellViewModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,8 @@ enum RequestError: Error {
         switch self {
         case .decode:
             return "Decode error"
+        case .invalidURL:
+            return "Invalid URL"
         case .unauthorized:
             return "Session expired"
         default:

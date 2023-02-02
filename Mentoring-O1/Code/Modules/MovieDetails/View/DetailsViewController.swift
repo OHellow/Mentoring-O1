@@ -42,7 +42,6 @@ class DetailsViewController: UIViewController {
     }
 
     private func setupUI() {
-        
     }
 
     private func setupBindables() {
