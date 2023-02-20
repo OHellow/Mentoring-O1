@@ -32,12 +32,12 @@ extension APIClient {
                 return .failure(.noResponse)
             }
             switch response.statusCode {
-            case 200...299:
+            case StatusCodeConstants.success:
                 guard let decodedResponse = try? JSONDecoder().decode(responseModel, from: data) else {
                     return .failure(.decode)
                 }
                 return .success(decodedResponse)
-            case 401:
+            case StatusCodeConstants.unauthorized:
                 return .failure(.unauthorized)
             default:
                 return .failure(.unexpectedStatusCode)
@@ -46,4 +46,9 @@ extension APIClient {
             return .failure(.unknown)
         }
     }
+}
+
+struct StatusCodeConstants {
+    static let success = 200...299
+    static let unauthorized = 401
 }

@@ -1,8 +1,7 @@
 import Foundation
 
 protocol UpcomingViewModelProtocol {
-    var movies: Observable<[Movie]> { get  set }
-    var error: Observable<RequestError?> { get set }
+    var moviesResult: Observable<Result<[Movie], RequestError>?> { get set }
     var startLoading: Observable<Bool> { get set }
 
     func refreshMovies()

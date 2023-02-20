@@ -37,18 +37,21 @@ class DetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         setupBindables()
     }
 
-    private func setupUI() {
-    }
-
     private func setupBindables() {
-        viewModel?.detailsModel.bind({ [weak self] details in
-            self?.titleLabel.text = details?.title
-            self?.overviewLabel.text = details?.overview
-            self?.backdropImageView.setImage(movieDBPathURL: details?.backdropPath)
+        viewModel?.detailsResult.bind({ [weak self] result in
+            switch result {
+            case .success(let details):
+                self?.titleLabel.text = details.title
+                self?.overviewLabel.text = details.overview
+                self?.backdropImageView.setImage(movieDBPathURL: details.backdropPath)
+            case .failure(let error):
+                break
+            case .none:
+                break
+            }
         })
     }
 }

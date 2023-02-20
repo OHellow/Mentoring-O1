@@ -34,7 +34,6 @@ extension MoviesEndpoint: Endpoint {
                 "Content-Type": "application/json;charset=utf-8"
             ]
         }
-        return nil
     }
 
     var body: [String: Any]? {

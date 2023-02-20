@@ -53,16 +53,17 @@ final class UpcomingViewController: UIViewController, LoadingDisplayable, UIColl
     }
 
     private func setupBindables() {
-        viewModel.movies.bind { [weak self] movies in
+        viewModel.moviesResult.bind { [weak self] result in
             guard let self else { return }
-            self.updateDataSource(movies: movies)
-        }
-        viewModel.error.bind { [weak self] error in
-            guard let self else { return }
-            if let error = error {
+            switch result {
+            case .success(let movies):
+                self.updateDataSource(movies: movies)
+            case .failure(let error):
                 DispatchQueue.main.async {
                     self.showModal(title: "Error", message: error.localizedDescription)
                 }
+            case .none:
+                break
             }
         }
         viewModel.startLoading.bind { [weak self] startLoading in
