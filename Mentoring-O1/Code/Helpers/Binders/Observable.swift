@@ -1,5 +1,7 @@
 import Foundation
 
+// TODO: use Combine in future
+
 class Observable<T> {
 
     var value: T {
