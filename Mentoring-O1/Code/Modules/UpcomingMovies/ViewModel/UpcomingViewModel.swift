@@ -2,7 +2,8 @@ import Foundation
 
 final class UpcomingViewModel: UpcomingViewModelProtocol {
     private var apiService: MoviesServiceable
-    var moviesResult: Observable<Result<[Movie], RequestError>?> = Observable(nil)
+    var movies: Observable<[Movie]> = Observable([])
+    var error: Observable<RequestError?> = Observable(nil)
     var startLoading = Observable(false)
     var currentPage: Int = 1
     var isInitialPage = true
@@ -13,14 +14,7 @@ final class UpcomingViewModel: UpcomingViewModelProtocol {
     }
 
     func getCellsCount() -> Int {
-        switch moviesResult.value {
-        case .success(let movies):
-            return movies.count
-        case .failure(_):
-            return 0
-        case .none:
-            return 0
-        }
+        movies.value.count
     }
 
     func getMovies() {
@@ -43,9 +37,9 @@ final class UpcomingViewModel: UpcomingViewModelProtocol {
             let results = await apiService.getUpcomingMovies(page: page)
             switch results {
             case .success(let results):
-                self.moviesResult.value = .success(processResults(results.results, currentPage: page))
+                self.movies.value = processResults(results.results, currentPage: page)
             case .failure(let error):
-                self.moviesResult.value = .failure(error)
+                self.error.value = error
             }
         }
     }
