@@ -1,18 +1,31 @@
 import UIKit
 
+protocol UpcomingViewControllerInput: AnyObject {
+    func fetchMovies(page: Int?)
+    func showDetail(at: Int)
+}
+
+protocol UpcomingViewControllerOutput: AnyObject {
+    func showDetailScene(with id: Int)
+    func updateMovies(movies: [Movie])
+    func showError(error: Error)
+    func showLoading()
+    func hideLoading()
+}
+
 final class UpcomingViewController: UIViewController, LoadingDisplayable, UICollectionViewDelegate {
     // MARK: Views
     private var collectionView: UICollectionView?
     var loaderView: LoadingViewProtocol = DefaultLoaderView()
 
     // MARK: Properties
-    private let viewModel: UpcomingViewModelProtocol
+    var interactor: UpcomingViewControllerInput?
+    var router: UpcomingRoutingLogic?
     private var dataSource: DefaultCollectionViewDataSource<UpcomingCollectionViewCell, Movie>?
     private var prefetchedDataSource: CollectionViewPrefetchedDataSource?
 
     // MARK: LifeCycle
-    init(viewModel: UpcomingViewModelProtocol) {
-        self.viewModel = viewModel
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -23,7 +36,7 @@ final class UpcomingViewController: UIViewController, LoadingDisplayable, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        setupBindables()
+        interactor?.fetchMovies(page: 1)
     }
 
     // MARK: Methods
@@ -39,7 +52,7 @@ final class UpcomingViewController: UIViewController, LoadingDisplayable, UIColl
     private func setupRefreshControl() {
         collectionView?.refreshControl = DefaultRefreshControl(backgroundColor: collectionView?.backgroundColor,
                                                               refreshHandler: { [weak self] in
-            self?.viewModel.refreshMovies()
+            self?.interactor?.fetchMovies(page: 1)
         })
     }
 
@@ -52,25 +65,6 @@ final class UpcomingViewController: UIViewController, LoadingDisplayable, UIColl
         return layout
     }
 
-    private func setupBindables() {
-        viewModel.movies.bind { [weak self] movies in
-            guard let self else { return }
-            self.updateDataSource(movies: movies)
-        }
-        viewModel.error.bind { [weak self] error in
-            guard let self else { return }
-            if let error = error {
-                DispatchQueue.main.async {
-                    self.showModal(title: "Error", message: error.localizedDescription)
-                }
-            }
-        }
-        viewModel.startLoading.bind { [weak self] startLoading in
-            guard let self else { return }
-            startLoading ? self.showLoader() : self.hideLoader()
-        }
-    }
-
     private func updateDataSource(movies: [Movie]) {
         dataSource = DefaultCollectionViewDataSource(cellViewModels: movies,
                                                      reuseIdentifier: UpcomingCollectionViewCell.reuseIdentifier,
@@ -78,9 +72,9 @@ final class UpcomingViewController: UIViewController, LoadingDisplayable, UIColl
             cell.viewModel = UpcomingCellViewModel(movie)
         })
 
-        prefetchedDataSource = CollectionViewPrefetchedDataSource(cellCount: viewModel.getCellsCount(),
-                                                                   prefetchHandler: { [weak self] in
-            self?.viewModel.getMovies()
+        prefetchedDataSource = CollectionViewPrefetchedDataSource(cellCount: movies.count,
+                                                                  prefetchHandler: { [weak self] in
+            self?.interactor?.fetchMovies(page: nil)
         })
 
         DispatchQueue.main.async {
@@ -89,27 +83,39 @@ final class UpcomingViewController: UIViewController, LoadingDisplayable, UIColl
             self.collectionView?.reloadData()
         }
     }
-
-    private func navigateToDetailsScreen(movieId: Int) {
-        let viewController = ScreenFabric.makeDetailsScene(movieId: movieId)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
-    private func showModal(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
 }
 
 // MARK: - TableView Methods
 extension UpcomingViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       tableView.deselectRow(at: indexPath, animated: true)
-      if let movieId = dataSource?.getItem(at: indexPath.row).id {
-          navigateToDetailsScreen(movieId: movieId)
-      }
+      interactor?.showDetail(at: indexPath.row)
   }
+}
+
+// MARK: - UpcomingViewControllerOutput
+extension UpcomingViewController: UpcomingViewControllerOutput {
+    func showDetailScene(with movieId: Int) {
+        router?.showDetails(movieId: movieId)
+    }
+
+    func showLoading() {
+        showLoader()
+    }
+
+    func hideLoading() {
+        hideLoader()
+    }
+
+    func showError(error: Error) {
+        DispatchQueue.main.async {
+            self.router?.showAlert(title: "Error", message: error.localizedDescription)
+        }
+    }
+
+    func updateMovies(movies: [Movie]) {
+        updateDataSource(movies: movies)
+    }
 }
 
 extension UpcomingViewController {
