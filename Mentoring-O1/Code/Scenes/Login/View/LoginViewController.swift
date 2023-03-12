@@ -1,5 +1,16 @@
 import UIKit
 
+protocol LoginViewControllerInput: AnyObject {
+    func didTapLogin(with email: String, password: String)
+}
+
+protocol LoginViewControllerOutput: AnyObject {
+    func showUpcomingMoviesScene()
+    func showError(error: Error)
+    func showLoading()
+    func hideLoading()
+}
+
 final class LoginViewController: UIViewController, LoadingDisplayable {
     private let kStackViewSpacing: CGFloat = 15
     private let kTextFieldCornerRadius: CGFloat = 5
@@ -54,11 +65,10 @@ final class LoginViewController: UIViewController, LoadingDisplayable {
     }()
 
     var loaderView: LoadingViewProtocol = DefaultLoaderView()
+    var router: LoginRoutingLogic?
+    var interactor: LoginViewControllerInput?
 
-    private let viewModel: LoginViewModel
-
-    init(viewModel: LoginViewModel) {
-        self.viewModel = viewModel
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -70,7 +80,6 @@ final class LoginViewController: UIViewController, LoadingDisplayable {
         super.viewDidLoad()
         setupStackView()
         setupTextFields()
-        setupBindables()
     }
 
     private func setupStackView() {
@@ -93,39 +102,32 @@ final class LoginViewController: UIViewController, LoadingDisplayable {
         passwordTextField.delegate = self
     }
 
-    private func setupBindables() {
-        viewModel.error.bind { [weak self] error in
-            if let error = error {
-                DispatchQueue.main.async {
-                    self?.showAlert(title: "Error", message: error.customMessage)
-                }
-            }
-        }
-        viewModel.startLoading.bind { [weak self] startLoading in
-            guard let self else { return }
-            startLoading ? self.showLoader() : self.hideLoader()
-        }
-    }
-
     @objc
     private func onLoginButton() {
-        viewModel.updateCredentials(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
-        viewModel.requestToken { [weak self] in
-            DispatchQueue.main.async {
-                self?.navigateToUpcomingScene()
-            }
+        interactor?.didTapLogin(with: emailTextField.text ?? "",
+                                password: passwordTextField.text ?? "")
+    }
+}
+
+extension LoginViewController: LoginViewControllerOutput {
+    func showUpcomingMoviesScene() {
+        DispatchQueue.main.async {
+            self.router?.showUpcomingScene()
         }
     }
 
-    private func navigateToUpcomingScene() {
-        let viewController = ScreenFabric.makeUpcomingScene()
-        navigationController?.setViewControllers([viewController], animated: true)
+    func showError(error: Error) {
+        DispatchQueue.main.async {
+            self.router?.showAlert(title: "Error", message: error.localizedDescription)
+        }
     }
 
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    func showLoading() {
+        showLoader()
+    }
+
+    func hideLoading() {
+        hideLoader()
     }
 }
 

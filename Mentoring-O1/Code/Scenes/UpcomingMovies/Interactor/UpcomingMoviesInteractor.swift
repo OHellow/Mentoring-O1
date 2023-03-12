@@ -1,8 +1,5 @@
 import Foundation
 
-protocol UpcomingInteractorOutput: AnyObject {
-}
-
 final class UpcomingInteractor {
     var presenter: UpcomingPresenterInput?
     var networkWorker: UpcomingNetworkLogic?
