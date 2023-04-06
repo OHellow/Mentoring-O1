@@ -1,11 +1,13 @@
 import Foundation
 
-struct Genre: Decodable {
-    let id: Int
+struct Crew: Decodable {
     let name: String
+    let department: String
+    let job: String
 
     private enum CodingKeys: String, CodingKey {
-        case id
         case name
+        case department
+        case job
     }
 }

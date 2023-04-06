@@ -18,11 +18,23 @@ class ScreenFabric {
         return viewController
     }
 
-    static func makeDetailsScene(movieId: Int) -> UIViewController {
+    static func makeDetailsScene(dataStore: MovieDetailDataStore) -> UIViewController {
         let apiService = MovieClient()
-        let viewModel = DetailsViewModel(apiService: apiService, movieId: movieId)
-        let viewController = DetailsViewController(viewModel: viewModel)
+        let presenter = MovieDetailsPresenter()
+        let interactor = MovieDetailsInteractor()
+        let router = MovieDetailsRouter()
+        let worker = MovieDetailsWorker(apiService: apiService)
+        let viewController = MovieDetailsViewController()
+
+        interactor.presenter = presenter
+        interactor.networkWorker = worker
+        presenter.viewController = viewController
+        viewController.interactor = interactor
+        viewController.router = router
+        router.viewController = viewController
+        router.dataStore = dataStore
         return viewController
+
     }
 
     static func makeLoginScene() -> UIViewController {

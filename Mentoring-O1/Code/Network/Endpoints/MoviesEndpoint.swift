@@ -4,6 +4,9 @@ enum MoviesEndpoint {
     case topRated
     case movieDetail(id: Int)
     case upcomingMovies(page: Int)
+    case movieCredits(id: Int)
+    case movieTrailers(id: Int)
+    case relatedMovies(id: Int, page: Int)
 }
 
 extension MoviesEndpoint: Endpoint {
@@ -15,12 +18,18 @@ extension MoviesEndpoint: Endpoint {
             return "/3/movie/\(id)"
         case .upcomingMovies:
             return "/3/movie/upcoming"
+        case .movieCredits(let id):
+            return "/3/movie/\(id)/credits"
+        case .movieTrailers(let id):
+            return "/3/movie/\(id)/videos"
+        case .relatedMovies(let id, _):
+            return "/3/movie/\(id)/recommendations"
         }
     }
 
     var method: RequestMethod {
         switch self {
-        case .topRated, .movieDetail, .upcomingMovies:
+        case .topRated, .movieDetail, .upcomingMovies, .movieCredits, .movieTrailers, .relatedMovies:
             return .get
         }
     }
@@ -28,7 +37,7 @@ extension MoviesEndpoint: Endpoint {
     var header: [String: String]? {
         let accessToken = ""
         switch self {
-        case .topRated, .movieDetail, .upcomingMovies:
+        case .topRated, .movieDetail, .upcomingMovies, .movieCredits, .movieTrailers, .relatedMovies:
             return [
                 "Authorization": "Bearer \(accessToken)",
                 "Content-Type": "application/json;charset=utf-8"
@@ -38,7 +47,7 @@ extension MoviesEndpoint: Endpoint {
 
     var body: [String: Any]? {
         switch self {
-        case .topRated, .movieDetail, .upcomingMovies:
+        case .topRated, .movieDetail, .upcomingMovies, .movieCredits, .movieTrailers, .relatedMovies:
             return nil
         }
     }
@@ -47,7 +56,9 @@ extension MoviesEndpoint: Endpoint {
         switch self {
         case .upcomingMovies(let page):
             return ["page": page]
-        case .topRated, .movieDetail:
+        case .relatedMovies( _, let page):
+            return ["page": page]
+        case .topRated, .movieDetail, .movieCredits, .movieTrailers:
             return nil
         }
     }

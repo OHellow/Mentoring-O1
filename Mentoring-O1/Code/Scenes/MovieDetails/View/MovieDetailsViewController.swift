@@ -1,10 +1,17 @@
-import Foundation
 import UIKit
 
-class DetailsViewController: UIViewController {
+protocol MoviewDetailsViewControllerInput: AnyObject {
+    func fetchMovieDetails(id: Int?)
+}
+
+protocol MoviewDetailsViewControllerOutput: AnyObject {
+
+}
+
+class MovieDetailsViewController: UIViewController {
     private let kTitleFontSize: CGFloat = 18
 
-    lazy var backdropImageView: UIImageView = {
+    lazy var posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -24,10 +31,10 @@ class DetailsViewController: UIViewController {
         return label
     }()
 
-    let viewModel: DetailsViewModelProtocol?
+    var interactor: MoviewDetailsViewControllerInput?
+    var router: (MovieDetailsRoutingLogic & MovieDetailsPassing)?
 
-    init(viewModel: DetailsViewModelProtocol) {
-        self.viewModel = viewModel
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -37,21 +44,10 @@ class DetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBindables()
+        interactor?.fetchMovieDetails(id: router?.dataStore?.id)
     }
+}
 
-    private func setupBindables() {
-        viewModel?.detailsResult.bind({ [weak self] result in
-            switch result {
-            case .success(let details):
-                self?.titleLabel.text = details.title
-                self?.overviewLabel.text = details.overview
-                self?.backdropImageView.setImage(movieDBPathURL: details.backdropPath)
-            case .failure(let error):
-                break
-            case .none:
-                break
-            }
-        })
-    }
+extension MovieDetailsViewController: MoviewDetailsViewControllerOutput {
+    
 }
