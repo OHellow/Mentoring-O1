@@ -13,7 +13,7 @@ protocol UpcomingViewControllerOutput: AnyObject {
     func hideLoading()
 }
 
-final class UpcomingViewController: UIViewController, LoadingDisplayable, UICollectionViewDelegate {
+final class UpcomingViewController: UIViewController, LoadingDisplayable {
     // MARK: Views
     private var collectionView: UICollectionView?
     var loaderView: LoadingViewProtocol = DefaultLoaderView()
@@ -86,11 +86,10 @@ final class UpcomingViewController: UIViewController, LoadingDisplayable, UIColl
 }
 
 // MARK: - TableView Methods
-extension UpcomingViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      tableView.deselectRow(at: indexPath, animated: true)
-      interactor?.showDetail(at: indexPath.row)
-  }
+extension UpcomingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        interactor?.showDetail(at: indexPath.row)
+    }
 }
 
 // MARK: - UpcomingViewControllerOutput

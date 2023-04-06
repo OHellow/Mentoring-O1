@@ -5,10 +5,14 @@ protocol MoviewDetailsViewControllerInput: AnyObject {
 }
 
 protocol MoviewDetailsViewControllerOutput: AnyObject {
-
+    func showError(error: Error)
+    func updateDetails(from movie: Movie)
+    func updateCredits(from credits: MovieCredits)
+    func updateTrailer(from trailer: Trailer)
+    func updateRelatedMovies(from movies: [RelatedMovie])
 }
 
-class MovieDetailsViewController: UIViewController {
+class MovieDetailsViewController: UIViewController, LoadingDisplayable {
     private let kTitleFontSize: CGFloat = 18
 
     lazy var posterImageView: UIImageView = {
@@ -31,6 +35,8 @@ class MovieDetailsViewController: UIViewController {
         return label
     }()
 
+    var loaderView: LoadingViewProtocol = DefaultLoaderView()
+
     var interactor: MoviewDetailsViewControllerInput?
     var router: (MovieDetailsRoutingLogic & MovieDetailsPassing)?
 
@@ -49,5 +55,17 @@ class MovieDetailsViewController: UIViewController {
 }
 
 extension MovieDetailsViewController: MoviewDetailsViewControllerOutput {
-    
+    func updateDetails(from movie: Movie) {}
+
+    func updateCredits(from credits: MovieCredits) {}
+
+    func updateTrailer(from trailer: Trailer) {}
+
+    func updateRelatedMovies(from movies: [RelatedMovie]) {}
+
+    func showError(error: Error) {
+        DispatchQueue.main.async {
+            self.router?.showAlert(title: "Error", message: error.localizedDescription)
+        }
+    }
 }
