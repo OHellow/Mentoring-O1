@@ -1,19 +1,17 @@
 import Foundation
 
 protocol MovieDetailsPresenterInput {
-    func showError(error: Error)
     func updateDetails(from movie: Movie?)
     func updateCredits(from credits: MovieCredits?)
     func updateTrailer(from trailer: Trailer?)
     func updateRelatedMovies(from movies: [RelatedMovie]?)
+    func navigateToAllCast(_ cast: [Cast])
+    func navigateToRelatedMovie(with id: Int)
+    func showError(error: Error)
 }
 
 final class MovieDetailsPresenter: MovieDetailsPresenterInput {
     weak var viewController: MoviewDetailsViewControllerOutput?
-
-    func showError(error: Error) {
-        viewController?.showError(error: error)
-    }
 
     func updateDetails(from movie: Movie?) {
         guard let movie = movie else { return }
@@ -33,5 +31,17 @@ final class MovieDetailsPresenter: MovieDetailsPresenterInput {
     func updateRelatedMovies(from movies: [RelatedMovie]?) {
         guard let movies = movies else { return }
         viewController?.updateRelatedMovies(from: movies)
+    }
+
+    func navigateToAllCast(_ cast: [Cast]) {
+        viewController?.navigateToAllCast(cast)
+    }
+
+    func navigateToRelatedMovie(with id: Int) {
+        viewController?.navigateToRelatedMovie(id: id)
+    }
+
+    func showError(error: Error) {
+        viewController?.showError(error: error)
     }
 }

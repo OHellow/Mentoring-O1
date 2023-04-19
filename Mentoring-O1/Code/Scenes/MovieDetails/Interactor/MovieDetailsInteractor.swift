@@ -3,12 +3,12 @@ import Foundation
 final class MovieDetailsInteractor {
     var presenter: MovieDetailsPresenterInput?
     var networkWorker: MovieDetailsWorkerLogic?
-
+    var relatedMovies: [RelatedMovie] = []
+    var movieCast: [Cast] = []
     let relatedMoviesPage = 1
 }
 
 extension MovieDetailsInteractor: MoviewDetailsViewControllerInput {
-
     func fetchMovieDetails(id: Int?) {
         guard let id = id else { return }
         Task {
@@ -19,16 +19,28 @@ extension MovieDetailsInteractor: MoviewDetailsViewControllerInput {
                 case .movieDetails(let movieDetails):
                     presenter?.updateDetails(from: movieDetails)
                 case .movieCredits(let movieCredits):
+                    self.movieCast = movieCredits.cast
                     presenter?.updateCredits(from: movieCredits)
                 case .movieTrailers(let movieTrailers):
                     presenter?.updateTrailer(from: movieTrailers.results.first)
                 case .movieRalatedMovies(let relatedMovies):
+                    self.relatedMovies = relatedMovies.results
                     presenter?.updateRelatedMovies(from: relatedMovies.results)
                 case .requestError(let error):
                     presenter?.showError(error: error)
                 }
             }
         }
+    }
+
+    func getAllCast() {
+        let cast = movieCast
+        presenter?.navigateToAllCast(cast)
+    }
+
+    func getIdForRelatedMovie(at index: Int) {
+        let relatedMovieId = relatedMovies[index].id
+        presenter?.navigateToRelatedMovie(with: relatedMovieId)
     }
 
     // swiftlint:disable:next function_body_length

@@ -14,7 +14,10 @@ class MovieDetailsRouter: MovieDetailsRoutingLogic, MovieDetailsPassing {
     weak var viewController: UIViewController?
     var dataStore: MovieDetailDataStore?
 
-    func showRelatedMovie(id: Int) {}
+    func showRelatedMovie(id: Int) {
+        let scene = ScreenFabric.makeDetailsScene(dataStore: MovieDetailDataStore(id: id))
+        viewController?.navigationController?.pushViewController(scene, animated: true)
+    }
 
     func showAllCast(_: [Cast]) {}
 
