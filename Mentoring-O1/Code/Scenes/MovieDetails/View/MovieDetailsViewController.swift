@@ -104,7 +104,7 @@ class MovieDetailsViewController: UIViewController, LoadingDisplayable {
                                 UIColor(named: "colorBackgroundGradientEnd")?.cgColor]
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.frame = view.bounds
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        view.layer.insertSublayer(gradientLayer, at: .zero)
     }
 
     private func setupScrollView() {
@@ -131,7 +131,7 @@ class MovieDetailsViewController: UIViewController, LoadingDisplayable {
             posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -navBarHeight),
             posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            posterImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.69)
+            posterImageView.heightAnchor.constraint(equalToConstant: Constants.posterImageHeightMultiplier)
         ])
         posterImageView.applyMovieDetailPosterGradient()
     }
@@ -159,7 +159,8 @@ class MovieDetailsViewController: UIViewController, LoadingDisplayable {
     }
 
     private func setupCastView() {
-        let collectionFlowLayout = HorizontalFlowLayout(cellHeight: 102, preferredWidth: 60)
+        let collectionFlowLayout = HorizontalFlowLayout(cellHeight: Constants.castViewCellHeight,
+                                                        preferredWidth: Constants.castViewCellWidth)
         castView = ContentViewHorizontalCollection(title: "Cast",
                                                    isSeeAllLabelHidden: false,
                                                    collectionFlowLayout: collectionFlowLayout,
@@ -168,15 +169,16 @@ class MovieDetailsViewController: UIViewController, LoadingDisplayable {
         contentView.addSubview(castView)
         castView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            castView.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 0),
+            castView.topAnchor.constraint(equalTo: posterImageView.bottomAnchor),
             castView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             castView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            castView.heightAnchor.constraint(equalToConstant: 150)
+            castView.heightAnchor.constraint(equalToConstant: 120)
         ])
     }
 
     private func setupRelatedMoviesView() {
-        let collectionFlowLayout = HorizontalFlowLayout(cellHeight: 150, preferredWidth: 80)
+        let collectionFlowLayout = HorizontalFlowLayout(cellHeight: Constants.relatedViewCellHeight,
+                                                        preferredWidth: Constants.relatedViewCellWidth)
         relatedMoviesView = ContentViewHorizontalCollection(title: "RelatedMovies",
                                                    isSeeAllLabelHidden: true,
                                                    collectionFlowLayout: collectionFlowLayout,
@@ -185,10 +187,10 @@ class MovieDetailsViewController: UIViewController, LoadingDisplayable {
         contentView.addSubview(relatedMoviesView)
         relatedMoviesView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            relatedMoviesView.topAnchor.constraint(equalTo: castView.bottomAnchor, constant: 40),
+            relatedMoviesView.topAnchor.constraint(equalTo: castView.bottomAnchor, constant: 20),
             relatedMoviesView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             relatedMoviesView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            relatedMoviesView.heightAnchor.constraint(equalToConstant: 180),
+            relatedMoviesView.heightAnchor.constraint(equalToConstant: 220),
             relatedMoviesView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
@@ -216,7 +218,7 @@ extension MovieDetailsViewController: MoviewDetailsViewControllerOutput {
     func updateDetails(from movie: Movie) {
         if let posterPath = movie.posterPath {
             DispatchQueue.main.async {
-                self.posterImageView.setImage(movieDBPathURL: posterPath)
+                self.posterImageView.setImage(movieDBPathURL: posterPath, completion: nil)
                 self.titleLabel.text = movie.title
             }
         }
@@ -259,5 +261,15 @@ extension MovieDetailsViewController: ContentViewHorizontalCollectionDelegate {
 
     func didTapSeeAllLabel() {
         interactor?.getAllCast()
+    }
+}
+
+extension MovieDetailsViewController {
+    struct Constants {
+        static let posterImageHeightMultiplier: CGFloat = UIScreen.main.bounds.height * 0.69
+        static let castViewCellHeight: CGFloat = 80
+        static let castViewCellWidth: CGFloat = 60
+        static let relatedViewCellHeight: CGFloat = 184
+        static let relatedViewCellWidth: CGFloat = 105
     }
 }

@@ -3,24 +3,18 @@ import UIKit
 final class MovieDetailsCastCell: UICollectionViewCell, Reusable {
     var posterImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
-        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        let layer = CALayer()
-        layer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 1.25, b: 0, c: 0, d: 1.87, tx: -0.06, ty: -0.29))
-        layer.bounds = imageView.bounds
-        layer.position = imageView.center
-        imageView.layer.addSublayer(layer)
-        imageView.layer.cornerRadius = 16
-        imageView.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        imageView.layer.cornerRadius = Constants.posterImageCornerRadius
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
 
     var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12)
-        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: Constants.nameLabelFontSize)
+        label.numberOfLines = Constants.nameLabelNumberOfLines
         label.textColor = UIColor(red: 0.376, green: 0.376, blue: 0.376, alpha: 1)
         return label
     }()
@@ -45,8 +39,10 @@ final class MovieDetailsCastCell: UICollectionViewCell, Reusable {
         contentView.addSubview(nameLabel)
         NSLayoutConstraint.activate([
             posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            posterImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            nameLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 4),
+            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            posterImageView.widthAnchor.constraint(equalToConstant: Constants.posterImageWidht),
+            posterImageView.heightAnchor.constraint(equalToConstant: Constants.posterImageHeight),
+            nameLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: Constants.nameLabelTopAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: posterImageView.leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
@@ -56,19 +52,19 @@ final class MovieDetailsCastCell: UICollectionViewCell, Reusable {
     private func configureCell() {
         guard let viewModel = viewModel else { return }
         if let profilePath = viewModel.profilePath {
-            posterImageView.setImage(movieDBPathURL: profilePath)
+            posterImageView.setImage(movieDBPathURL: profilePath, completion: nil)
+            nameLabel.text = viewModel.name
         }
-        nameLabel.text = viewModel.name
     }
 }
 
 extension MovieDetailsCastCell {
     struct Constants {
-        static let titleLabelFontSize: CGFloat = 20
-        static let seeAllLabelFontSize: CGFloat = 14
-        static let titleLabelLeadingAnchor: CGFloat = 24
-        static let seeAllLabelTrailingAnchor: CGFloat = -25
-        static let collectionViewTopAnchor: CGFloat = 12
-        static let collectionViewLeadingAnchor: CGFloat = 24
+        static let posterImageWidht: CGFloat = 44
+        static let posterImageHeight: CGFloat = 44
+        static let posterImageCornerRadius: CGFloat = 10
+        static let nameLabelFontSize: CGFloat = 12
+        static let nameLabelNumberOfLines: Int = 2
+        static let nameLabelTopAnchor: CGFloat = 4
     }
 }

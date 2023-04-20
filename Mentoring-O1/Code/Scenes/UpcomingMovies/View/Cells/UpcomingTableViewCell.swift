@@ -41,7 +41,7 @@ final class UpcomingCollectionViewCell: UICollectionViewCell, UpcomingCollection
     private func configureCell() {
         guard let viewModel = viewModel else { return }
         if let posterPath = viewModel.posterPath {
-            posterImageView.setImage(movieDBPathURL: posterPath)
+            posterImageView.setImage(movieDBPathURL: posterPath, completion: nil)
         } else {
             posterImageView.backgroundColor = .darkGray
         }
