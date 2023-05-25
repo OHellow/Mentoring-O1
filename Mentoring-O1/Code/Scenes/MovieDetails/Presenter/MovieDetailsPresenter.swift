@@ -11,7 +11,7 @@ protocol MovieDetailsPresenterInput {
 }
 
 final class MovieDetailsPresenter: MovieDetailsPresenterInput {
-    weak var viewController: MoviewDetailsViewControllerOutput?
+    weak var viewController: MovieDetailsViewControllerOutput?
 
     func updateDetails(from movie: Movie?) {
         guard let movie = movie else { return }

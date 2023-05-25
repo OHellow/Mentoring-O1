@@ -9,7 +9,7 @@ class UpcomingMoviesRouter: UpcomingRoutingLogic {
     weak var viewController: UIViewController?
 
     func showDetails(movieId: Int) {
-        let scene = ScreenFabric.makeDetailsScene(dataStore: MovieDetailDataStore(id: movieId))
+        let scene = ScreenFabricMovieDetails.makeDetailsScene(dataStore: MovieDetailDataStore(id: movieId))
         viewController?.navigationController?.pushViewController(scene, animated: true)
     }
 

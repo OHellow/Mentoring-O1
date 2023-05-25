@@ -15,7 +15,7 @@ class MovieDetailsRouter: MovieDetailsRoutingLogic, MovieDetailsPassing {
     var dataStore: MovieDetailDataStore?
 
     func showRelatedMovie(id: Int) {
-        let scene = ScreenFabric.makeDetailsScene(dataStore: MovieDetailDataStore(id: id))
+        let scene = ScreenFabricMovieDetails.makeDetailsScene(dataStore: MovieDetailDataStore(id: id))
         viewController?.navigationController?.pushViewController(scene, animated: true)
     }
 

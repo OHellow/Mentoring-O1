@@ -17,14 +17,18 @@ extension UIImageView {
         self.layer.addSublayer(gradientLayer)
     }
 
+    private var kHexNumbersCount: Int {
+        return 6
+    }
+
     func hexStringToUIColor(hex: String) -> UIColor {
         var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
-        if (cString.hasPrefix("#")) {
+        if cString.hasPrefix("#") {
             cString.remove(at: cString.startIndex)
         }
 
-        if ((cString.count) != 6) {
+        if cString.count != kHexNumbersCount {
             return UIColor.gray
         }
 

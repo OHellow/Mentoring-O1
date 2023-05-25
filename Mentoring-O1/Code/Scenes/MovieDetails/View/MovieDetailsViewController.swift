@@ -6,7 +6,7 @@ protocol MoviewDetailsViewControllerInput: AnyObject {
     func getAllCast()
 }
 
-protocol MoviewDetailsViewControllerOutput: AnyObject {
+protocol MovieDetailsViewControllerOutput: AnyObject {
     func updateDetails(from movie: Movie)
     func updateCredits(from credits: MovieCredits)
     func updateTrailer(from trailer: Trailer)
@@ -214,7 +214,7 @@ class MovieDetailsViewController: UIViewController, LoadingDisplayable {
     }
 }
 
-extension MovieDetailsViewController: MoviewDetailsViewControllerOutput {
+extension MovieDetailsViewController: MovieDetailsViewControllerOutput {
     func updateDetails(from movie: Movie) {
         if let posterPath = movie.posterPath {
             DispatchQueue.main.async {

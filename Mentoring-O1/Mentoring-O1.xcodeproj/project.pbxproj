@@ -60,8 +60,10 @@
 		CA8291FE2899B98D00FA6BCC /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8291FD2899B98D00FA6BCC /* Observable.swift */; };
 		CA8292032899C73500FA6BCC /* UpcomingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8292022899C73500FA6BCC /* UpcomingTableViewCell.swift */; };
 		CA8292062899CEA200FA6BCC /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8292052899CEA200FA6BCC /* MovieDetailsViewController.swift */; };
-		CA82920C2899CF3B00FA6BCC /* ScreenFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA82920B2899CF3B00FA6BCC /* ScreenFabric.swift */; };
 		CA82920F2899F5A600FA6BCC /* UIImageView+SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA82920E2899F5A600FA6BCC /* UIImageView+SetImage.swift */; };
+		CA9007562A1F81F500803CE0 /* ScreenFabricMovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9007552A1F81F500803CE0 /* ScreenFabricMovieDetails.swift */; };
+		CA9007582A1F820300803CE0 /* ScreenFabricUpcomingMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9007572A1F820300803CE0 /* ScreenFabricUpcomingMovies.swift */; };
+		CA90075A2A1F822D00803CE0 /* ScreenFabricLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9007592A1F822D00803CE0 /* ScreenFabricLogin.swift */; };
 		CA93CDBB299E64E700D9A6B3 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CA93CDBA299E64E700D9A6B3 /* SDWebImage */; };
 		CAC4A6482941618500F7F028 /* DefaultCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4A6472941618500F7F028 /* DefaultCollectionViewDataSource.swift */; };
 		CAC4A64A29416A8700F7F028 /* UpcomingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4A64929416A8700F7F028 /* UpcomingCellViewModel.swift */; };
@@ -132,8 +134,10 @@
 		CA8291FD2899B98D00FA6BCC /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		CA8292022899C73500FA6BCC /* UpcomingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingTableViewCell.swift; sourceTree = "<group>"; };
 		CA8292052899CEA200FA6BCC /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
-		CA82920B2899CF3B00FA6BCC /* ScreenFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFabric.swift; sourceTree = "<group>"; };
 		CA82920E2899F5A600FA6BCC /* UIImageView+SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+SetImage.swift"; sourceTree = "<group>"; };
+		CA9007552A1F81F500803CE0 /* ScreenFabricMovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFabricMovieDetails.swift; sourceTree = "<group>"; };
+		CA9007572A1F820300803CE0 /* ScreenFabricUpcomingMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFabricUpcomingMovies.swift; sourceTree = "<group>"; };
+		CA9007592A1F822D00803CE0 /* ScreenFabricLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFabricLogin.swift; sourceTree = "<group>"; };
 		CAC4A6472941618500F7F028 /* DefaultCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		CAC4A64929416A8700F7F028 /* UpcomingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingCellViewModel.swift; sourceTree = "<group>"; };
 		CAC4A64B29416FF800F7F028 /* VerticalFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalFlowLayout.swift; sourceTree = "<group>"; };
@@ -491,7 +495,9 @@
 		CA82920A2899CED800FA6BCC /* ScreenFabric */ = {
 			isa = PBXGroup;
 			children = (
-				CA82920B2899CF3B00FA6BCC /* ScreenFabric.swift */,
+				CA9007552A1F81F500803CE0 /* ScreenFabricMovieDetails.swift */,
+				CA9007572A1F820300803CE0 /* ScreenFabricUpcomingMovies.swift */,
+				CA9007592A1F822D00803CE0 /* ScreenFabricLogin.swift */,
 			);
 			path = ScreenFabric;
 			sourceTree = "<group>";
@@ -729,8 +735,8 @@
 				CA21C4EC294AB3AE0043231F /* Reusable.swift in Sources */,
 				CA67018629DE208100A9AD25 /* Cast.swift in Sources */,
 				CA21C50329528FB70043231F /* LoadingViewProtocol.swift in Sources */,
-				CA82920C2899CF3B00FA6BCC /* ScreenFabric.swift in Sources */,
 				CA21C50029528F0D0043231F /* LoadingDiplaylable.swift in Sources */,
+				CA9007582A1F820300803CE0 /* ScreenFabricUpcomingMovies.swift in Sources */,
 				CA67018829DE20FB00A9AD25 /* Crew.swift in Sources */,
 				CA67017C29DE1BD600A9AD25 /* MovieDetailsInteractor.swift in Sources */,
 				CA67018029DE1BF600A9AD25 /* MovieDetailsPresenter.swift in Sources */,
@@ -746,10 +752,12 @@
 				CA21C50A295321130043231F /* CollectionViewPrefetchedDataSource.swift in Sources */,
 				CA33C9682980BC14005DE009 /* AuthResponse.swift in Sources */,
 				CAF815DF289725F600B7B26E /* RequestMethod.swift in Sources */,
+				CA9007562A1F81F500803CE0 /* ScreenFabricMovieDetails.swift in Sources */,
 				CA21C4F4294B5BD10043231F /* MovieResult.swift in Sources */,
 				CA33C9642980B6DF005DE009 /* AuthEndpoint.swift in Sources */,
 				CA4FB9AB29E7816C0004972E /* MovieDetailCastViewModel.swift in Sources */,
 				CA784807297975090089C75B /* DetailsModel.swift in Sources */,
+				CA90075A2A1F822D00803CE0 /* ScreenFabricLogin.swift in Sources */,
 				CA21C50C2953EDCD0043231F /* Genre.swift in Sources */,
 				CA4FB9B529EF5EE40004972E /* ContentViewHorizontalCollection.swift in Sources */,
 				CA383B402895839F002E4408 /* SceneDelegate.swift in Sources */,
