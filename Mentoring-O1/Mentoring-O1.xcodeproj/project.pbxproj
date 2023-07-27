@@ -44,6 +44,10 @@
 		CA605FD129BE6E1D0003CEC3 /* LoginNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA605FD029BE6E1D0003CEC3 /* LoginNetworkWorker.swift */; };
 		CA605FD329BE6E2A0003CEC3 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA605FD229BE6E2A0003CEC3 /* LoginInteractor.swift */; };
 		CA605FD529BE6E350003CEC3 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA605FD429BE6E350003CEC3 /* LoginRouter.swift */; };
+		CA62BBDD2A7281D7004BCDF1 /* PaginableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA62BBDC2A7281D7004BCDF1 /* PaginableTests.swift */; };
+		CA62BBE32A7282A8004BCDF1 /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21C4F3294B5BD10043231F /* MovieResult.swift */; };
+		CA62BBE42A7282B5004BCDF1 /* Paginable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21C4F7295285A80043231F /* Paginable.swift */; };
+		CA62BBE52A728381004BCDF1 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF815EA289726FD00B7B26E /* Movie.swift */; };
 		CA67017A29DE1BC000A9AD25 /* MovieDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA67017929DE1BC000A9AD25 /* MovieDetailsRouter.swift */; };
 		CA67017C29DE1BD600A9AD25 /* MovieDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA67017B29DE1BD600A9AD25 /* MovieDetailsInteractor.swift */; };
 		CA67017E29DE1BEA00A9AD25 /* MovieDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA67017D29DE1BEA00A9AD25 /* MovieDetailsWorker.swift */; };
@@ -77,6 +81,16 @@
 		CAF815EB289726FD00B7B26E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF815EA289726FD00B7B26E /* Movie.swift */; };
 		CAF815ED2897272800B7B26E /* TopRated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF815EC2897272800B7B26E /* TopRated.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CA62BBDE2A7281D7004BCDF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA383B322895839F002E4408 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA383B392895839F002E4408;
+			remoteInfo = "Mentoring-O1";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CA21C4EB294AB3AE0043231F /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
@@ -118,6 +132,8 @@
 		CA605FD029BE6E1D0003CEC3 /* LoginNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkWorker.swift; sourceTree = "<group>"; };
 		CA605FD229BE6E2A0003CEC3 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		CA605FD429BE6E350003CEC3 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		CA62BBDA2A7281D7004BCDF1 /* Mentoring-O1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mentoring-O1Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA62BBDC2A7281D7004BCDF1 /* PaginableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginableTests.swift; sourceTree = "<group>"; };
 		CA67017929DE1BC000A9AD25 /* MovieDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRouter.swift; sourceTree = "<group>"; };
 		CA67017B29DE1BD600A9AD25 /* MovieDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsInteractor.swift; sourceTree = "<group>"; };
 		CA67017D29DE1BEA00A9AD25 /* MovieDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsWorker.swift; sourceTree = "<group>"; };
@@ -157,6 +173,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA93CDBB299E64E700D9A6B3 /* SDWebImage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA62BBD72A7281D7004BCDF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				CA383B3C2895839F002E4408 /* Code */,
+				CA62BBDB2A7281D7004BCDF1 /* Mentoring-O1Tests */,
 				CA383B3B2895839F002E4408 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -261,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				CA383B3A2895839F002E4408 /* Mentoring-O1.app */,
+				CA62BBDA2A7281D7004BCDF1 /* Mentoring-O1Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -370,6 +395,14 @@
 				CA605FCE29BE6E0A0003CEC3 /* LoginPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CA62BBDB2A7281D7004BCDF1 /* Mentoring-O1Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CA62BBDC2A7281D7004BCDF1 /* PaginableTests.swift */,
+			);
+			path = "Mentoring-O1Tests";
 			sourceTree = "<group>";
 		};
 		CA67017529DE1B5700A9AD25 /* Presenter */ = {
@@ -631,6 +664,24 @@
 			productReference = CA383B3A2895839F002E4408 /* Mentoring-O1.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CA62BBD92A7281D7004BCDF1 /* Mentoring-O1Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA62BBE22A7281D7004BCDF1 /* Build configuration list for PBXNativeTarget "Mentoring-O1Tests" */;
+			buildPhases = (
+				CA62BBD62A7281D7004BCDF1 /* Sources */,
+				CA62BBD72A7281D7004BCDF1 /* Frameworks */,
+				CA62BBD82A7281D7004BCDF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA62BBDF2A7281D7004BCDF1 /* PBXTargetDependency */,
+			);
+			name = "Mentoring-O1Tests";
+			productName = "Mentoring-O1Tests";
+			productReference = CA62BBDA2A7281D7004BCDF1 /* Mentoring-O1Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -638,11 +689,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					CA383B392895839F002E4408 = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					CA62BBD92A7281D7004BCDF1 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = CA383B392895839F002E4408;
 					};
 				};
 			};
@@ -663,6 +718,7 @@
 			projectRoot = "";
 			targets = (
 				CA383B392895839F002E4408 /* Mentoring-O1 */,
+				CA62BBD92A7281D7004BCDF1 /* Mentoring-O1Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -674,6 +730,13 @@
 			files = (
 				CA383B4A289583A0002E4408 /* LaunchScreen.storyboard in Resources */,
 				CA383B47289583A0002E4408 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA62BBD82A7281D7004BCDF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,7 +837,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CA62BBD62A7281D7004BCDF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA62BBDD2A7281D7004BCDF1 /* PaginableTests.swift in Sources */,
+				CA62BBE42A7282B5004BCDF1 /* Paginable.swift in Sources */,
+				CA62BBE52A728381004BCDF1 /* Movie.swift in Sources */,
+				CA62BBE32A7282A8004BCDF1 /* MovieResult.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CA62BBDF2A7281D7004BCDF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA383B392895839F002E4408 /* Mentoring-O1 */;
+			targetProxy = CA62BBDE2A7281D7004BCDF1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CA383B48289583A0002E4408 /* LaunchScreen.storyboard */ = {
@@ -956,6 +1038,46 @@
 			};
 			name = Release;
 		};
+		CA62BBE02A7281D7004BCDF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3LU5X82S3M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mentoringCinema.Mentoring-O1Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mentoring-O1.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mentoring-O1";
+			};
+			name = Debug;
+		};
+		CA62BBE12A7281D7004BCDF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3LU5X82S3M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mentoringCinema.Mentoring-O1Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mentoring-O1.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mentoring-O1";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -973,6 +1095,15 @@
 			buildConfigurations = (
 				CA383B4F289583A0002E4408 /* Debug */,
 				CA383B50289583A0002E4408 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA62BBE22A7281D7004BCDF1 /* Build configuration list for PBXNativeTarget "Mentoring-O1Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA62BBE02A7281D7004BCDF1 /* Debug */,
+				CA62BBE12A7281D7004BCDF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
