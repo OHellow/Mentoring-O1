@@ -1,11 +1,11 @@
 import Foundation
 
-struct Genre: Decodable {
-    let id: Int
+struct Cast: Decodable {
     let name: String
+    let profilePath: String?
 
     private enum CodingKeys: String, CodingKey {
-        case id
         case name
+        case profilePath = "profile_path"
     }
 }
