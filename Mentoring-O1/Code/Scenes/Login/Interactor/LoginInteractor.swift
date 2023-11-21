@@ -4,6 +4,10 @@ protocol LoginInteractorDelegate: AnyObject {
     func loginResult(result: Result<Void, Error>)
 }
 
+protocol LoginInteractorProtocol {
+    func didTapLogin(with email: String, password: String)
+}
+
 final class LoginInteractor {
     var networkWorker: LoginNetworkLogic?
 
@@ -13,7 +17,7 @@ final class LoginInteractor {
     private var password = ""
 }
 
-extension LoginInteractor {
+extension LoginInteractor: LoginInteractorProtocol {
     func didTapLogin(with email: String, password: String) {
         self.email = email
         self.password = password

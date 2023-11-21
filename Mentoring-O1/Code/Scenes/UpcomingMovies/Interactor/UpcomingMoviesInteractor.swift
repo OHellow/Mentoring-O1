@@ -1,47 +1,38 @@
 import Foundation
 
-final class UpcomingInteractor {
-    var presenter: UpcomingPresenterInput?
-    var networkWorker: UpcomingNetworkLogic?
-
-    var movies: [Movie]?
-    var error: RequestError?
-    var currentPage: Int = 1
-    var isInitialPage = true
+protocol UpcomingInteractorDelegate: AnyObject {
+    func fetchResult(result: Result<[Movie], RequestError>)
 }
 
-extension UpcomingInteractor: UpcomingViewControllerInput {
-    func fetchMovies(page: Int? = nil) {
-        let currentPage = (page != nil) ? page! : self.currentPage
-        presenter?.showLoadingIndicator()
+protocol UpcomingInteractorProtocol {
+    func fetchMovies()
+}
+
+final class UpcomingInteractor {
+    var networkWorker: UpcomingNetworkLogic?
+    var delegate: UpcomingInteractorDelegate?
+    var currentPage: Int = 1
+}
+
+extension UpcomingInteractor: UpcomingInteractorProtocol {
+    func fetchMovies() {
+        let page = currentPage + 1
         Task(priority: .background) {
-            presenter?.hideLoadingIndicator()
-            let result = await networkWorker?.fetchMovies(page: currentPage)
+            let result = await networkWorker?.fetchMovies(page: page)
             switch result {
             case .success(let results):
-                let movies = processResults(results.results, currentPage: currentPage)
-                self.movies = movies
-                presenter?.updateMovies(with: movies)
+                updatePage()
+                let movies = results.results
+                delegate?.fetchResult(result: .success(movies))
             case .failure(let error):
-                self.error = error
-                presenter?.showError(error: error)
+                delegate?.fetchResult(result: .failure(error))
             case .none:
                 break
             }
         }
     }
 
-    func showDetail(at index: Int) {
-        if let movieId = movies?[index].id {
-            presenter?.showDetail(movieId: movieId)
-        }
-    }
-
-    private func processResults(_ results: [Movie],
-                                currentPage: Int) -> [Movie] {
-        var allResults = currentPage == 1 ? [] : self.movies ?? []
-        allResults.append(contentsOf: results)
+    private func updatePage() {
         self.currentPage += 1
-        return allResults
     }
 }

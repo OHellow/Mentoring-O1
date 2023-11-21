@@ -1,16 +1,16 @@
 import SwiftUI
 
-class LoginViewModel: ObservableObject {
+final class LoginViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var showingAlert = false
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var errorMessage: String = ""
 
-    private var interactor: LoginInteractor
-    private var router: LoginRouter
+    private var interactor: LoginInteractorProtocol
+    private var router: LoginRoutingLogic
 
-    init(interactor: LoginInteractor, router: LoginRouter) {
+    init(interactor: LoginInteractorProtocol, router: LoginRoutingLogic) {
         self.interactor = interactor
         self.router = router
     }
@@ -31,8 +31,7 @@ class LoginViewModel: ObservableObject {
 }
 
 extension LoginViewModel: LoginInteractorDelegate {
-    @MainActor 
-    func loginResult(result: Result<Void, Error>) {
+    @MainActor func loginResult(result: Result<Void, Error>) {
         hideLoading()
         switch result {
         case .success(()):
