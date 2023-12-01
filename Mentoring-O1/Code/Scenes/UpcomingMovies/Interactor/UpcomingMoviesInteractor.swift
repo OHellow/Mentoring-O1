@@ -1,35 +1,36 @@
 import Foundation
-
-protocol UpcomingInteractorDelegate: AnyObject {
-    func fetchResult(result: Result<[Movie], RequestError>)
-}
+import Combine
 
 protocol UpcomingInteractorProtocol {
-    func fetchMovies()
+    func fetchMovies() -> AnyPublisher<[Movie], RequestError>
 }
 
 final class UpcomingInteractor {
     var networkWorker: UpcomingNetworkLogic?
-    var delegate: UpcomingInteractorDelegate?
+
+    private var cancellables: Set<AnyCancellable> = []
     var currentPage: Int = 1
 }
 
 extension UpcomingInteractor: UpcomingInteractorProtocol {
-    func fetchMovies() {
-        let page = currentPage + 1
-        Task(priority: .background) {
-            let result = await networkWorker?.fetchMovies(page: page)
-            switch result {
-            case .success(let results):
-                updatePage()
-                let movies = results.results
-                delegate?.fetchResult(result: .success(movies))
-            case .failure(let error):
-                delegate?.fetchResult(result: .failure(error))
-            case .none:
-                break
+    func fetchMovies() -> AnyPublisher<[Movie], RequestError> {
+        return Future<[Movie], RequestError> { [weak self] promise in
+            guard let self = self else { return }
+            Task(priority: .background) {
+                let result = await self.networkWorker?.fetchMovies(page: self.currentPage)
+                switch result {
+                case .success(let results):
+                    self.updatePage()
+                    let movies = results.results
+                    promise(.success(results.results))
+                case .failure(let error):
+                    promise(.failure(error))
+                case .none:
+                    break
+                }
             }
         }
+        .eraseToAnyPublisher()
     }
 
     private func updatePage() {

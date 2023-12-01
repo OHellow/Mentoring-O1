@@ -1,39 +1,57 @@
-//
-//  UpcomingMovieCell.swift
-//  Mentoring-O1
-//
-//  Created by Aleh Satsishur on 17/11/2023.
-//
-
 import SwiftUI
 
 struct MovieCell: View {
-    var movie: Movie
-    var onTap: () -> Void
+    var viewModel: UpcomingMovieCellViewModel
 
     var body: some View {
-        VStack {
-            Image(systemName: "film")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 100)
-            HStack() {
-                Text(movie.title)
-                    .font(.headline)
-                Text("Release Date: \(movie.releaseDate)")
-                    .font(.subheadline)
+        GeometryReader { _ in
+            VStack(alignment: .leading) {
+                AsyncImage(url: viewModel.posterPath) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(16)
+                } placeholder: {
+                    ProgressView()
+                }
+                //.frame(width: context.size.width, height: context.size.height * 0.8)
+                VStack(alignment: .leading) {
+                    Text(viewModel.title)
+                        .font(.subheadline)
+                        .background(Color.pink)
+                        .lineLimit(1)
+                    Text(viewModel.releaseDate)
+                        .font(.caption)
+                        .background(Color.mint)
+                        .lineLimit(1)
+                }
             }
-            .padding()
-        }
-        .border(Color.gray, width: 1)
-        .cornerRadius(8)
-        .padding(8)
-        .onTapGesture {
-            onTap()
+            .padding(4)
+            .onTapGesture {
+                viewModel.onTap()
+            }
         }
     }
 }
 
-#Preview {
-    UpcomingMovieCell()
+struct MovieCell_Previews: PreviewProvider {
+    static var previews: some View {
+        let tap: () -> Void = {}
+        let movie = Movie(adult: nil,
+                          backdropPath: nil,
+                          genreIDS: nil,
+                          id: nil,
+                          originalLanguage: nil,
+                          originalTitle: nil,
+                          overview: "",
+                          popularity: nil,
+                          posterPath: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg",
+                          releaseDate: "Text",
+                          title: "Text",
+                          video: nil,
+                          voteAverage: nil,
+                          voteCount: nil)
+        let viewModel = UpcomingMovieCellViewModel(movie: movie, onTap: tap)
+        MovieCell(viewModel: viewModel)
+    }
 }

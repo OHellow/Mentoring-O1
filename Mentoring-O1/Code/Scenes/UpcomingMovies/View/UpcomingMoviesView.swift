@@ -1,19 +1,32 @@
 import SwiftUI
 
+// swiftlint:disable all trailing_whitespace
 struct UpcomingMoviesView: View {
-
     @ObservedObject var viewModel: UpcomingMoviesViewModel
 
     var body: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
-            ForEach(viewModel.movies) { movie in
-                MovieCell(movie: movie, onTap: {
-                    viewModel.navigateToMovieDetailsScene(uid: movie.id)
-                })
+        ScrollView {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
+                ForEach(viewModel.movies) { movie in
+                    let cellViewModel = UpcomingMovieCellViewModel(movie: movie) {
+                        viewModel.navigateToMovieDetailsScene(uid: movie.id)
+                    }
+                    MovieCell(viewModel: cellViewModel)
+                    .id(movie.id)
+                    .onAppear {
+                        if movie == viewModel.movies.last {
+                            viewModel.showLoading()
+                            viewModel.fetchMovies()
+                        }
+                    }
+                    .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.33)
+                }
             }
+            .padding()
         }
         .navigationTitle("Upcoming Movies")
-        .onAppear {
+        .task {
+            viewModel.showLoading()
             viewModel.fetchMovies()
         }
     }
