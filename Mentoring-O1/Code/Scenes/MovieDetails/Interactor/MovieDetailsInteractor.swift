@@ -1,103 +1,92 @@
 import Foundation
+import Combine
 
-final class MovieDetailsInteractor {
-    var presenter: MovieDetailsPresenterInput?
-    var networkWorker: MovieDetailsWorkerLogic?
-    var relatedMovies: [RelatedMovie] = []
-    var movieCast: [Cast] = []
-    let relatedMoviesPage = 1
+protocol MovieDetailsInteractorProtocol {
+    func fetchMovieDetail(id: Int) -> AnyPublisher<Movie, RequestError>
+    func fetchMovieCredits(id: Int) -> AnyPublisher<MovieCredits, RequestError>
+    func fetchTrailersForMovie(id: Int) -> AnyPublisher<TrailerResponse, RequestError>
+    func fetchRelatedMovies(id: Int, page: Int) -> AnyPublisher<RelatedMoviesResponse, RequestError>
 }
 
-extension MovieDetailsInteractor: MoviewDetailsViewControllerInput {
-    func fetchMovieDetails(id: Int?) {
-        guard let id = id else { return }
-        Task {
-            let taskResults = await fetchData(id: id, page: relatedMoviesPage)
+final class MovieDetailsInteractor {
+    var networkWorker: MovieDetailsWorkerLogic?
+}
 
-            for taskResult in taskResults {
-                switch taskResult {
-                case .movieDetails(let movieDetails):
-                    presenter?.updateDetails(from: movieDetails)
-                case .movieCredits(let movieCredits):
-                    self.movieCast = movieCredits.cast
-                    presenter?.updateCredits(from: movieCredits)
-                case .movieTrailers(let movieTrailers):
-                    presenter?.updateTrailer(from: movieTrailers.results.first)
-                case .movieRalatedMovies(let relatedMovies):
-                    self.relatedMovies = relatedMovies.results
-                    presenter?.updateRelatedMovies(from: relatedMovies.results)
-                case .requestError(let error):
-                    presenter?.showError(error: error)
-                }
-            }
+extension MovieDetailsInteractor: MovieDetailsInteractorProtocol {
+    func fetchMovieDetail(id: Int) -> AnyPublisher<Movie, RequestError> {
+        guard let networkWorker = self.networkWorker else {
+            return Fail(error: RequestError.unknown).eraseToAnyPublisher()
         }
-    }
 
-    func getAllCast() {
-        let cast = movieCast
-        presenter?.navigateToAllCast(cast)
-    }
-
-    func getIdForRelatedMovie(at index: Int) {
-        let relatedMovieId = relatedMovies[index].id
-        presenter?.navigateToRelatedMovie(with: relatedMovieId)
-    }
-
-    // swiftlint:disable:next function_body_length
-    func fetchData(id: Int, page: Int) async -> [TaskResult] {
-        return await withTaskGroup(of: TaskResult.self) { [weak self] group in
-            guard let networkWorker = self?.networkWorker else { return [TaskResult.requestError(.unknown)] }
-            group.addTask {
+        return Future<Movie, RequestError> { promise in
+            Task.detached {
                 let movieDetail = await networkWorker.getMovieDetail(id: id)
                 switch movieDetail {
                 case .success(let movieDetail):
-                    return TaskResult.movieDetails(movieDetail)
+                    promise(.success(movieDetail))
                 case .failure(let error):
-                    return TaskResult.requestError(error)
+                    promise(.failure(error))
                 }
             }
-            group.addTask {
+        }
+        .eraseToAnyPublisher()
+    }
+
+    func fetchMovieCredits(id: Int) -> AnyPublisher<MovieCredits, RequestError> {
+        guard let networkWorker = self.networkWorker else {
+            return Fail(error: RequestError.unknown).eraseToAnyPublisher()
+        }
+
+        return Future<MovieCredits, RequestError> { promise in
+            Task.detached {
                 let movieCredits = await networkWorker.getMovieCredits(id: id)
                 switch movieCredits {
                 case .success(let movieCredits):
-                    return TaskResult.movieCredits(movieCredits)
+                    promise(.success(movieCredits))
                 case .failure(let error):
-                    return TaskResult.requestError(error)
+                    promise(.failure(error))
                 }
             }
-            group.addTask {
+        }
+        .eraseToAnyPublisher()
+    }
+
+    func fetchTrailersForMovie(id: Int) -> AnyPublisher<TrailerResponse, RequestError> {
+        guard let networkWorker = self.networkWorker else {
+            return Fail(error: RequestError.unknown).eraseToAnyPublisher()
+        }
+
+        return Future<TrailerResponse, RequestError> { promise in
+            Task.detached {
                 let movieTrailers = await networkWorker.getTrailersForMovie(id: id)
                 switch movieTrailers {
                 case .success(let movieTrailers):
-                    return TaskResult.movieTrailers(movieTrailers)
+                    promise(.success(movieTrailers))
                 case .failure(let error):
-                    return TaskResult.requestError(error)
+                    promise(.failure(error))
                 }
             }
-            group.addTask {
+        }
+        .eraseToAnyPublisher()
+    }
+
+    func fetchRelatedMovies(id: Int, page: Int) -> AnyPublisher<RelatedMoviesResponse, RequestError> {
+        guard let networkWorker = self.networkWorker else {
+            return Fail(error: RequestError.unknown).eraseToAnyPublisher()
+        }
+
+        return Future<RelatedMoviesResponse, RequestError> { promise in
+            Task.detached {
                 let relatedMovies = await networkWorker.getRelatedMovies(id: id,
                                                                          page: page)
                 switch relatedMovies {
                 case .success(let relatedMovies):
-                    return TaskResult.movieRalatedMovies(relatedMovies)
+                    promise(.success(relatedMovies))
                 case .failure(let error):
-                    return TaskResult.requestError(error)
+                    promise(.failure(error))
                 }
             }
-
-            var results = [TaskResult]()
-            for await result in group {
-                results.append(result)
-            }
-            return results
         }
-    }
-
-    enum TaskResult {
-        case movieDetails(Movie)
-        case movieCredits(MovieCredits)
-        case movieTrailers(TrailerResponse)
-        case movieRalatedMovies(RelatedMoviesResponse)
-        case requestError(RequestError)
+        .eraseToAnyPublisher()
     }
 }

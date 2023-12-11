@@ -7,9 +7,8 @@ protocol UpcomingInteractorProtocol {
 
 final class UpcomingInteractor {
     var networkWorker: UpcomingNetworkLogic?
-
     private var cancellables: Set<AnyCancellable> = []
-    var currentPage: Int = 1
+    private var currentPage: Int = 1
 }
 
 extension UpcomingInteractor: UpcomingInteractorProtocol {

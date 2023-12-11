@@ -3,17 +3,13 @@ import UIKit
 final class ScreenFabricMovieDetails {
     static func makeDetailsScene(dataStore: MovieDetailDataStore) -> UIViewController {
         let apiService = MovieClient()
-        let presenter = MovieDetailsPresenter()
         let interactor = MovieDetailsInteractor()
         let router = MovieDetailsRouter()
         let worker = MovieDetailsWorker(apiService: apiService)
-        let viewController = MovieDetailsViewController()
+        let viewModel = MovieDetailsViewModel(movieId: dataStore.id, interactor: interactor, router: router)
+        let viewController = MovieDetailsViewController(viewModel: viewModel)
 
-        interactor.presenter = presenter
         interactor.networkWorker = worker
-        presenter.viewController = viewController
-        viewController.interactor = interactor
-        viewController.router = router
         router.viewController = viewController
         router.dataStore = dataStore
         return viewController
