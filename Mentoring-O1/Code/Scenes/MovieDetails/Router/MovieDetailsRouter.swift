@@ -3,7 +3,6 @@ import UIKit
 protocol MovieDetailsRoutingLogic {
     func showRelatedMovie(id: Int)
     func showAllCast(_: [Cast])
-    func showAlert(title: String, message: String)
 }
 
 protocol MovieDetailsPassing {
@@ -20,12 +19,6 @@ class MovieDetailsRouter: MovieDetailsRoutingLogic, MovieDetailsPassing {
     }
 
     func showAllCast(_: [Cast]) {}
-
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        viewController?.present(alert, animated: true)
-    }
 }
 
 struct MovieDetailDataStore {

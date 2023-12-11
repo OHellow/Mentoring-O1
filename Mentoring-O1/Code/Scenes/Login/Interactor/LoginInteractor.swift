@@ -1,14 +1,23 @@
 import Foundation
 
+protocol LoginInteractorDelegate: AnyObject {
+    func loginResult(result: Result<Void, Error>)
+}
+
+protocol LoginInteractorProtocol {
+    func didTapLogin(with email: String, password: String)
+}
+
 final class LoginInteractor {
-    var presenter: LoginPresenterInput?
     var networkWorker: LoginNetworkLogic?
+
+    weak var delegate: LoginInteractorDelegate?
 
     private var email = ""
     private var password = ""
 }
 
-extension LoginInteractor: LoginViewControllerInput {
+extension LoginInteractor: LoginInteractorProtocol {
     func didTapLogin(with email: String, password: String) {
         self.email = email
         self.password = password
@@ -22,7 +31,7 @@ extension LoginInteractor: LoginViewControllerInput {
             case .success(let response):
                 login(with: response.requestToken)
             case .failure(let error):
-                presenter?.showError(error: error)
+                delegate?.loginResult(result: .failure(error))
             case .none:
                 break
             }
@@ -34,9 +43,9 @@ extension LoginInteractor: LoginViewControllerInput {
             let result = await networkWorker?.logIn(email: email, password: password, token: token ?? "")
             switch result {
             case .success(_):
-                presenter?.showUpcomingMoviesScene()
+                delegate?.loginResult(result: .success(()))
             case .failure(let error):
-                presenter?.showError(error: error)
+                delegate?.loginResult(result: .failure(error))
             case .none:
                 break
             }

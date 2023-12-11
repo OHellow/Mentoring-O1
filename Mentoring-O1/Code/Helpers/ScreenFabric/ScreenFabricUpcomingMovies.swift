@@ -3,17 +3,13 @@ import UIKit
 final class ScreenFabricUpcomingMovies {
     static func makeUpcomingScene() -> UIViewController {
         let apiService = MovieClient()
-        let presenter = UpcomingPresenter()
         let interactor = UpcomingInteractor()
         let router = UpcomingMoviesRouter()
         let worker = UpcomingNetworkWorker(apiService: apiService)
-        let viewController = UpcomingViewController()
+        let viewModel = UpcomingMoviesViewModel(interactor: interactor, router: router)
+        let viewController = UpcomingViewController(viewModel: viewModel)
 
-        interactor.presenter = presenter
         interactor.networkWorker = worker
-        presenter.viewController = viewController
-        viewController.interactor = interactor
-        viewController.router = router
         router.viewController = viewController
         return viewController
     }
