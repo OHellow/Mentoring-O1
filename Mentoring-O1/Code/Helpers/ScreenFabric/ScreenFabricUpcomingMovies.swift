@@ -6,11 +6,14 @@ final class ScreenFabricUpcomingMovies {
         let interactor = UpcomingInteractor()
         let router = UpcomingMoviesRouter()
         let worker = UpcomingNetworkWorker(apiService: apiService)
-        let viewModel = UpcomingMoviesViewModel(interactor: interactor, router: router)
-        let viewController = UpcomingViewController(viewModel: viewModel)
+        let errorWrapper = ErrorWrapper(error: "")
+        let state = UpComingMoviesState()
+        let model = UpcomingMoviesModel(interactor: interactor, router: router, state: state)
+        let viewController = UpcomingViewController(model: model)
 
         interactor.networkWorker = worker
         router.viewController = viewController
+        state.errorWrapper = errorWrapper
         return viewController
     }
 }

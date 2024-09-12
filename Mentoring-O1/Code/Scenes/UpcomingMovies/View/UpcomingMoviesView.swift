@@ -2,32 +2,43 @@ import SwiftUI
 
 // swiftlint:disable all trailing_whitespace
 struct UpcomingMoviesView: View {
-    @ObservedObject var viewModel: UpcomingMoviesViewModel
+    @EnvironmentObject private var model: UpcomingMoviesModel
+    @EnvironmentObject var upcomingMoviesState: UpComingMoviesState
 
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
-                ForEach(viewModel.movies) { movie in
-                    let cellViewModel = UpcomingMovieCellViewModel(movie: movie) {
-                        viewModel.navigateToMovieDetailsScene(uid: movie.id)
-                    }
-                    MovieCell(viewModel: cellViewModel)
-                    .id(movie.id)
-                    .onAppear {
-                        if movie == viewModel.movies.last {
-                            viewModel.showLoading()
-                            viewModel.fetchMovies()
+        ZStack {
+            ScrollView {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
+                    ForEach(model.movies) { movie in
+                        let cellViewModel = UpcomingMovieCellViewModel(movie: movie) {
+                            model.navigateToMovieDetailsScene(uid: movie.id)
                         }
+                        MovieCell(viewModel: cellViewModel)
+                            .id(movie.id)
+                            .onAppear {
+                                if movie == model.movies.last {
+                                    model.fetchMovies()
+                                }
+                            }
+                            .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.33)
                     }
-                    .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.33)
+                }
+                .padding()
+            }
+            if upcomingMoviesState.isLoading {
+                VStack {
+                    ProgressView("Logging in...")
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 1).foregroundColor(Color.black.opacity(0.3)))
                 }
             }
-            .padding()
         }
         .navigationTitle("Upcoming Movies")
         .task {
-            viewModel.showLoading()
-            viewModel.fetchMovies()
+            model.fetchMovies()
+        }
+        .sheet(item: $upcomingMoviesState.errorWrapper) { errorWrapper in
+            ErrorView(errorDescription: errorWrapper.error)
         }
     }
 }
@@ -36,7 +47,10 @@ struct UpcomingMoviesView_Previews: PreviewProvider {
     static var previews: some View {
         let inter = UpcomingInteractor()
         let router = UpcomingMoviesRouter()
-        let model = UpcomingMoviesViewModel(interactor: inter, router: router)
-        UpcomingMoviesView(viewModel: model)
+        let state = UpComingMoviesState()
+        let model = UpcomingMoviesModel(interactor: inter, router: router, state: state)
+        UpcomingMoviesView()
+            .environmentObject(model)
+            .environmentObject(state)
     }
 }

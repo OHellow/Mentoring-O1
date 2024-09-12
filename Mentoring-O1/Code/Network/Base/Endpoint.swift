@@ -32,7 +32,6 @@ extension Endpoint {
         components.host = host
         components.path = path
         var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
-                          //URLQueryItem(name: "language", value: "en-US")]
         if let params = params, method == .get {
             queryItems.append(contentsOf: params.map {
                 return URLQueryItem(name: "\($0)", value: "\($1)")

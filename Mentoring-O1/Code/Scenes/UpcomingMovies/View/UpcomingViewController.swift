@@ -2,10 +2,10 @@ import UIKit
 import SwiftUI
 
 final class UpcomingViewController: UIViewController {
-    var viewModel: UpcomingMoviesViewModel
+    var model: UpcomingMoviesModel
 
-    init(viewModel: UpcomingMoviesViewModel) {
-        self.viewModel = viewModel
+    init(model: UpcomingMoviesModel) {
+        self.model = model
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -19,7 +19,9 @@ final class UpcomingViewController: UIViewController {
     }
 
     private func setupUpcomingMoviesView() {
-        let upcomingView = UpcomingMoviesView(viewModel: viewModel)
+        let upcomingView = UpcomingMoviesView()
+                           .environmentObject(model)
+                           .environmentObject(model.upcomingMoviesSate)
         let upcomingViewContainer = UIHostingController(rootView: upcomingView)
         addChild(upcomingViewContainer)
         view.addSubview(upcomingViewContainer.view)

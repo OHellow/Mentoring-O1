@@ -25,6 +25,7 @@ final class MovieDetailsViewModel: ObservableObject {
     func navigateToMovieDetailsScene(uid: Int?) {}
 
     @MainActor
+    // swiftlint:disable:next function_body_length
     private func setupCombine() {
         let movieDetailPublisher = interactor.fetchMovieDetail(id: movieId)
         let movieCreditsPublisher = interactor.fetchMovieCredits(id: movieId)
