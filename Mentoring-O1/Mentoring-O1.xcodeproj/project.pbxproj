@@ -27,6 +27,7 @@
 		CA383B47289583A0002E4408 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA383B46289583A0002E4408 /* Assets.xcassets */; };
 		CA383B4A289583A0002E4408 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA383B48289583A0002E4408 /* LaunchScreen.storyboard */; };
 		CA4C67052B21575700136492 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C67042B21575700136492 /* MovieDetailsViewModel.swift */; };
+		CA4ECBC62C93046D00E2E937 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA4ECBC52C93046D00E2E937 /* ComposableArchitecture */; };
 		CA4FB9A929E77EB00004972E /* MovieDetailsCastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB9A829E77EB00004972E /* MovieDetailsCastCell.swift */; };
 		CA4FB9AB29E7816C0004972E /* MovieDetailCastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB9AA29E7816C0004972E /* MovieDetailCastViewModel.swift */; };
 		CA4FB9AF29E783A60004972E /* MovieDetailsRelatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB9AE29E783A60004972E /* MovieDetailsRelatedCell.swift */; };
@@ -178,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4ECBC62C93046D00E2E937 /* ComposableArchitecture in Frameworks */,
 				CA93CDBB299E64E700D9A6B3 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +288,7 @@
 				CA383B3C2895839F002E4408 /* Code */,
 				CA62BBDB2A7281D7004BCDF1 /* Mentoring-O1Tests */,
 				CA383B3B2895839F002E4408 /* Products */,
+				CA4ECBC42C93046D00E2E937 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -312,6 +315,13 @@
 				CA383B48289583A0002E4408 /* LaunchScreen.storyboard */,
 			);
 			path = Code;
+			sourceTree = "<group>";
+		};
+		CA4ECBC42C93046D00E2E937 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CA4FB9A729E77E4B0004972E /* Cells */ = {
@@ -652,6 +662,7 @@
 			name = "Mentoring-O1";
 			packageProductDependencies = (
 				CA93CDBA299E64E700D9A6B3 /* SDWebImage */,
+				CA4ECBC52C93046D00E2E937 /* ComposableArchitecture */,
 			);
 			productName = "Mentoring-O1";
 			productReference = CA383B3A2895839F002E4408 /* Mentoring-O1.app */;
@@ -705,6 +716,7 @@
 			mainGroup = CA383B312895839F002E4408;
 			packageReferences = (
 				CA93CDB9299E64E700D9A6B3 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				CA4ECBC32C93033B00E2E937 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = CA383B3B2895839F002E4408 /* Products */;
 			projectDirPath = "";
@@ -1107,6 +1119,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CA4ECBC32C93033B00E2E937 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.14.0;
+			};
+		};
 		CA93CDB9299E64E700D9A6B3 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -1118,6 +1138,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CA4ECBC52C93046D00E2E937 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA4ECBC32C93033B00E2E937 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		CA93CDBA299E64E700D9A6B3 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CA93CDB9299E64E700D9A6B3 /* XCRemoteSwiftPackageReference "SDWebImage" */;

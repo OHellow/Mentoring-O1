@@ -1,4 +1,5 @@
 import SwiftUI
+import ComposableArchitecture
 
 // swiftlint:disable all trailing_whitespace
 struct UpcomingMoviesView: View {
