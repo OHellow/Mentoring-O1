@@ -8,7 +8,7 @@ class LoginRouter: LoginRoutingLogic {
     weak var viewController: UIViewController?
 
     func showUpcomingScene() {
-        let upcomingScene = ScreenFabricUpcomingMovies.makeUpcomingScene()
+        let upcomingScene = ScreenFabricUpcomingMovies.makeUpcomingSceneTCA()
         viewController?.navigationController?.setViewControllers([upcomingScene], animated: true)
     }
 }

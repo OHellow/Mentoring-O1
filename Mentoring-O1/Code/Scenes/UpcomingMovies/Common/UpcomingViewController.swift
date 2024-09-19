@@ -1,11 +1,12 @@
 import UIKit
 import SwiftUI
+import ComposableArchitecture
 
 final class UpcomingViewController: UIViewController {
-    var model: UpcomingMoviesModel
+    var store: StoreOf<UpcomingMoviesReducer>
 
-    init(model: UpcomingMoviesModel) {
-        self.model = model
+    init(store: StoreOf<UpcomingMoviesReducer>) {
+        self.store = store
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -19,9 +20,7 @@ final class UpcomingViewController: UIViewController {
     }
 
     private func setupUpcomingMoviesView() {
-        let upcomingView = UpcomingMoviesView()
-                           .environmentObject(model)
-                           .environmentObject(model.upcomingMoviesSate)
+        let upcomingView = UpcomingMoviesViewTCA(store: store)
         let upcomingViewContainer = UIHostingController(rootView: upcomingView)
         addChild(upcomingViewContainer)
         view.addSubview(upcomingViewContainer.view)
