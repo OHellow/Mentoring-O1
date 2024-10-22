@@ -17,6 +17,8 @@
 		CA21C5052952911A0043231F /* Displaylable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21C5042952911A0043231F /* Displaylable.swift */; };
 		CA21C50829529B180043231F /* DefaultRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21C50729529B180043231F /* DefaultRefreshControl.swift */; };
 		CA21C50C2953EDCD0043231F /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21C50B2953EDCD0043231F /* Genre.swift */; };
+		CA3227B62CC7154000786F5C /* LoginViewTCA.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3227B52CC7154000786F5C /* LoginViewTCA.swift */; };
+		CA3227BA2CC7155D00786F5C /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3227B92CC7155D00786F5C /* LoginReducer.swift */; };
 		CA33C95C2980A75D005DE009 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C95B2980A75D005DE009 /* LoginViewController.swift */; };
 		CA33C9642980B6DF005DE009 /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C9632980B6DF005DE009 /* AuthEndpoint.swift */; };
 		CA33C9662980BBA4005DE009 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C9652980BBA4005DE009 /* AuthClient.swift */; };
@@ -70,6 +72,7 @@
 		CA82920F2899F5A600FA6BCC /* UIImageView+SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA82920E2899F5A600FA6BCC /* UIImageView+SetImage.swift */; };
 		CA848DE22ACDF6AD003FE6AA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA848DE12ACDF6AD003FE6AA /* LoginViewModel.swift */; };
 		CA848DFF2ACE37EC003FE6AA /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA848DFE2ACE37EC003FE6AA /* MovieDetailsView.swift */; };
+		CA8953622CB010ED00E973F4 /* MovieDetailsViewControllerTCA.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8953612CB010ED00E973F4 /* MovieDetailsViewControllerTCA.swift */; };
 		CA8EC2492B0EE01C00BBAFBB /* UpcomingMovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8EC2482B0EE01C00BBAFBB /* UpcomingMovieCellViewModel.swift */; };
 		CA9007562A1F81F500803CE0 /* ScreenFabricMovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9007552A1F81F500803CE0 /* ScreenFabricMovieDetails.swift */; };
 		CA9007582A1F820300803CE0 /* ScreenFabricUpcomingMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9007572A1F820300803CE0 /* ScreenFabricUpcomingMovies.swift */; };
@@ -78,6 +81,8 @@
 		CAC4A64C29416FF800F7F028 /* VerticalFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4A64B29416FF800F7F028 /* VerticalFlowLayout.swift */; };
 		CADB68562ABC664300F994E5 /* LoginVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADB68552ABC664300F994E5 /* LoginVIew.swift */; };
 		CADFCE6B2C9B9FB20083EE6E /* DefaultAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADFCE6A2C9B9FB20083EE6E /* DefaultAlertView.swift */; };
+		CADFCF222CA6CB910083EE6E /* MovieDetailsViewTCA.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADFCF212CA6CB910083EE6E /* MovieDetailsViewTCA.swift */; };
+		CADFCF262CA6CC510083EE6E /* MovieDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADFCF252CA6CC510083EE6E /* MovieDetailsReducer.swift */; };
 		CAF67FC22B10B18F007045DE /* String+ImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF67FC12B10B18F007045DE /* String+ImageURL.swift */; };
 		CAF815DB289725A500B7B26E /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF815DA289725A500B7B26E /* Endpoint.swift */; };
 		CAF815DD289725CC00B7B26E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF815DC289725CC00B7B26E /* APIClient.swift */; };
@@ -110,6 +115,8 @@
 		CA21C5042952911A0043231F /* Displaylable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Displaylable.swift; sourceTree = "<group>"; };
 		CA21C50729529B180043231F /* DefaultRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRefreshControl.swift; sourceTree = "<group>"; };
 		CA21C50B2953EDCD0043231F /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		CA3227B52CC7154000786F5C /* LoginViewTCA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewTCA.swift; sourceTree = "<group>"; };
+		CA3227B92CC7155D00786F5C /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
 		CA33C95B2980A75D005DE009 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CA33C9632980B6DF005DE009 /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
 		CA33C9652980BBA4005DE009 /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
@@ -162,6 +169,7 @@
 		CA82920E2899F5A600FA6BCC /* UIImageView+SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+SetImage.swift"; sourceTree = "<group>"; };
 		CA848DE12ACDF6AD003FE6AA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CA848DFE2ACE37EC003FE6AA /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
+		CA8953612CB010ED00E973F4 /* MovieDetailsViewControllerTCA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewControllerTCA.swift; sourceTree = "<group>"; };
 		CA8EC2482B0EE01C00BBAFBB /* UpcomingMovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovieCellViewModel.swift; sourceTree = "<group>"; };
 		CA9007552A1F81F500803CE0 /* ScreenFabricMovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFabricMovieDetails.swift; sourceTree = "<group>"; };
 		CA9007572A1F820300803CE0 /* ScreenFabricUpcomingMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFabricUpcomingMovies.swift; sourceTree = "<group>"; };
@@ -169,6 +177,8 @@
 		CAC4A64B29416FF800F7F028 /* VerticalFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalFlowLayout.swift; sourceTree = "<group>"; };
 		CADB68552ABC664300F994E5 /* LoginVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVIew.swift; sourceTree = "<group>"; };
 		CADFCE6A2C9B9FB20083EE6E /* DefaultAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlertView.swift; sourceTree = "<group>"; };
+		CADFCF212CA6CB910083EE6E /* MovieDetailsViewTCA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewTCA.swift; sourceTree = "<group>"; };
+		CADFCF252CA6CC510083EE6E /* MovieDetailsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsReducer.swift; sourceTree = "<group>"; };
 		CAF67FC12B10B18F007045DE /* String+ImageURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ImageURL.swift"; sourceTree = "<group>"; };
 		CAF815DA289725A500B7B26E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		CAF815DC289725CC00B7B26E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -267,7 +277,16 @@
 			path = RefreshControl;
 			sourceTree = "<group>";
 		};
-		CA33C9582980A724005DE009 /* Login */ = {
+		CA3227B32CC7150D00786F5C /* TCA */ = {
+			isa = PBXGroup;
+			children = (
+				CA3227B82CC7154B00786F5C /* Reducer */,
+				CA3227B72CC7154400786F5C /* View */,
+			);
+			path = TCA;
+			sourceTree = "<group>";
+		};
+		CA3227B42CC7151600786F5C /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				CA605FCC29BE6DF10003CEC3 /* Worker */,
@@ -275,6 +294,31 @@
 				CA605FCA29BE6DDD0003CEC3 /* Router */,
 				CA33C9592980A72F005DE009 /* View */,
 				CA848DE12ACDF6AD003FE6AA /* LoginViewModel.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		CA3227B72CC7154400786F5C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA3227B52CC7154000786F5C /* LoginViewTCA.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA3227B82CC7154B00786F5C /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				CA3227B92CC7155D00786F5C /* LoginReducer.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
+		CA33C9582980A724005DE009 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CA3227B42CC7151600786F5C /* MVVM */,
+				CA3227B32CC7150D00786F5C /* TCA */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -552,11 +596,8 @@
 		CA8292042899CE7F00FA6BCC /* MovieDetails */ = {
 			isa = PBXGroup;
 			children = (
-				CA67017829DE1B9300A9AD25 /* Router */,
-				CA67017729DE1B7000A9AD25 /* Interactor */,
-				CA67017629DE1B6600A9AD25 /* Worker */,
-				CA784805297974F50089C75B /* Model */,
-				CA7848012979708D0089C75B /* View */,
+				CADFCF202CA6CA750083EE6E /* TCA */,
+				CADFCF1F2CA6CA660083EE6E /* Combine */,
 			);
 			path = MovieDetails;
 			sourceTree = "<group>";
@@ -598,6 +639,44 @@
 				CA383B412895839F002E4408 /* UpcomingViewController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		CADFCF1F2CA6CA660083EE6E /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				CA67017829DE1B9300A9AD25 /* Router */,
+				CA67017729DE1B7000A9AD25 /* Interactor */,
+				CA67017629DE1B6600A9AD25 /* Worker */,
+				CA784805297974F50089C75B /* Model */,
+				CA7848012979708D0089C75B /* View */,
+			);
+			path = Combine;
+			sourceTree = "<group>";
+		};
+		CADFCF202CA6CA750083EE6E /* TCA */ = {
+			isa = PBXGroup;
+			children = (
+				CADFCF242CA6CBC90083EE6E /* Reducer */,
+				CADFCF232CA6CBC10083EE6E /* View */,
+			);
+			path = TCA;
+			sourceTree = "<group>";
+		};
+		CADFCF232CA6CBC10083EE6E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CADFCF212CA6CB910083EE6E /* MovieDetailsViewTCA.swift */,
+				CA8953612CB010ED00E973F4 /* MovieDetailsViewControllerTCA.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CADFCF242CA6CBC90083EE6E /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				CADFCF252CA6CC510083EE6E /* MovieDetailsReducer.swift */,
+			);
+			path = Reducer;
 			sourceTree = "<group>";
 		};
 		CAF815D82897236300B7B26E /* SupportingFiles */ = {
@@ -826,6 +905,8 @@
 				CA6F2BAA2B06F73700632F23 /* UpcomingMoviesViewModel.swift in Sources */,
 				CAF815E12897261100B7B26E /* RequestError.swift in Sources */,
 				CA82920F2899F5A600FA6BCC /* UIImageView+SetImage.swift in Sources */,
+				CADFCF222CA6CB910083EE6E /* MovieDetailsViewTCA.swift in Sources */,
+				CA8953622CB010ED00E973F4 /* MovieDetailsViewControllerTCA.swift in Sources */,
 				CA4FB9B129E783C40004972E /* MovieDetailsRelatedViewModel.swift in Sources */,
 				CA383B422895839F002E4408 /* UpcomingViewController.swift in Sources */,
 				CA4FB9B729F040500004972E /* HorizontalFlowLayout.swift in Sources */,
@@ -839,6 +920,7 @@
 				CA67017E29DE1BEA00A9AD25 /* MovieDetailsWorker.swift in Sources */,
 				CA67018B29DE25E900A9AD25 /* TrailerResponse.swift in Sources */,
 				CAF815DB289725A500B7B26E /* Endpoint.swift in Sources */,
+				CADFCF262CA6CC510083EE6E /* MovieDetailsReducer.swift in Sources */,
 				CADFCE6B2C9B9FB20083EE6E /* DefaultAlertView.swift in Sources */,
 				CA33C9662980BBA4005DE009 /* AuthClient.swift in Sources */,
 				CAF815E8289726B700B7B26E /* MovieClient.swift in Sources */,
@@ -852,6 +934,7 @@
 				CA67018D29DE261100A9AD25 /* Trailer.swift in Sources */,
 				CA67019129DE2DE900A9AD25 /* RelatedMoviesResponse.swift in Sources */,
 				CA605FD329BE6E2A0003CEC3 /* LoginInteractor.swift in Sources */,
+				CA3227B62CC7154000786F5C /* LoginViewTCA.swift in Sources */,
 				CA21C4EC294AB3AE0043231F /* Reusable.swift in Sources */,
 				CA67018629DE208100A9AD25 /* Cast.swift in Sources */,
 				CA21C50329528FB70043231F /* LoadingViewProtocol.swift in Sources */,
@@ -869,6 +952,7 @@
 				CA21C4FB29528C9B0043231F /* DefaultLoaderView.swift in Sources */,
 				CAF815DD289725CC00B7B26E /* APIClient.swift in Sources */,
 				CA33C95C2980A75D005DE009 /* LoginViewController.swift in Sources */,
+				CA3227BA2CC7155D00786F5C /* LoginReducer.swift in Sources */,
 				CA67018229DE1DB100A9AD25 /* MovieDetails.swift in Sources */,
 				CA848DE22ACDF6AD003FE6AA /* LoginViewModel.swift in Sources */,
 				CA6E15562B46AD4C00698C3A /* UpComingMoviesState.swift in Sources */,
@@ -1175,16 +1259,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.14.0;
+				kind = exactVersion;
+				version = 1.15.1;
 			};
 		};
 		CA93CDB9299E64E700D9A6B3 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				kind = exactVersion;
+				version = 5.19.7;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

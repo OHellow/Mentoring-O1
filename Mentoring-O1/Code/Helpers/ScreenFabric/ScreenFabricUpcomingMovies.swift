@@ -22,7 +22,8 @@ final class ScreenFabricUpcomingMovies {
         let store = Store(initialState: UpcomingMoviesReducer.State()) {
             let apiService = MovieClient()
             let worker = UpcomingNetworkWorker(apiService: apiService)
-            UpcomingMoviesReducer(worker: worker)
+            let router = UpcomingMoviesRouter()
+            return UpcomingMoviesReducer(worker: worker, router: router)
         }
         let viewController = UpcomingViewController(store: store)
 

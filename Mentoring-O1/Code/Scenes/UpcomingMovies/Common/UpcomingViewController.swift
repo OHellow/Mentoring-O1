@@ -20,7 +20,7 @@ final class UpcomingViewController: UIViewController {
     }
 
     private func setupUpcomingMoviesView() {
-        let upcomingView = UpcomingMoviesViewTCA(store: store)
+        let upcomingView = UpcomingMoviesViewTCA(store: self.store)
         let upcomingViewContainer = UIHostingController(rootView: upcomingView)
         addChild(upcomingViewContainer)
         view.addSubview(upcomingViewContainer.view)

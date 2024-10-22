@@ -2,6 +2,7 @@ import UIKit
 
 protocol UpcomingRoutingLogic {
     func showDetails(movieId: Int)
+    func showDetailsTCA(movie: Movie)
 }
 
 class UpcomingMoviesRouter: UpcomingRoutingLogic {
@@ -9,6 +10,11 @@ class UpcomingMoviesRouter: UpcomingRoutingLogic {
 
     func showDetails(movieId: Int) {
         let scene = ScreenFabricMovieDetails.makeDetailsScene(dataStore: MovieDetailDataStore(id: movieId))
+        viewController?.navigationController?.pushViewController(scene, animated: true)
+    }
+
+    func showDetailsTCA(movie: Movie) {
+        let scene = ScreenFabricMovieDetails.makeMovieDetailsSceneTCA(movie: movie)
         viewController?.navigationController?.pushViewController(scene, animated: true)
     }
 }

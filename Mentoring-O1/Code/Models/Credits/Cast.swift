@@ -1,6 +1,7 @@
 import Foundation
 
-struct Cast: Decodable {
+struct Cast: Decodable, Identifiable {
+    var id = UUID()
     let name: String
     let profilePath: String?
 

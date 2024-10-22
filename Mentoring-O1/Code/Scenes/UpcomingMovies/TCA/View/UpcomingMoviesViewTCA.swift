@@ -10,7 +10,7 @@ struct UpcomingMoviesViewTCA: View {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
                     ForEach(store.movies) { movie in
                         let cellViewModel = UpcomingMovieCellViewModel(movie: movie) {
-                            store.send(.movieCellTapped(movie.id ?? .zero))
+                            store.send(.movieCellTapped(movie))
                         }
                         MovieCell(viewModel: cellViewModel)
                             .id(movie.id)
@@ -29,7 +29,7 @@ struct UpcomingMoviesViewTCA: View {
                     .progressViewStyle(CircularProgressViewStyle())
                     .scaleEffect(2)
             }
-            if store.isShowError {
+            if !store.error.isEmpty {
                 DefaultAlertView(title: "Error", message: store.error) {
                     store.send(.hideError)
                 }
@@ -47,8 +47,9 @@ struct UpcomingMoviesViewTCA: View {
         store: Store(initialState: UpcomingMoviesReducer.State()) {
             let apiService = MovieClient()
             let worker = UpcomingNetworkWorker(apiService: apiService)
-            let reducer = UpcomingMoviesReducer(worker: worker)
+            let router = UpcomingMoviesRouter()
+            let reducer = UpcomingMoviesReducer(worker: worker, router: router)
             return reducer
-    }
+        }
     )
 }

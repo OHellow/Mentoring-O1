@@ -10,18 +10,18 @@ struct UpcomingMoviesReducer {
         var movies: [Movie] = []
         var currentPage: Int = 1
         var isLoading = false
-        var isShowError = false
         var error: String = ""
     }
 
     enum Action {
         case fetchMovies
         case handleFetchMoviesResponse(Result<MovieResult, RequestError>)
-        case movieCellTapped(Int)
+        case movieCellTapped(Movie)
         case hideError
     }
 
     var worker: UpcomingNetworkLogic
+    var router: UpcomingRoutingLogic
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -43,16 +43,15 @@ struct UpcomingMoviesReducer {
                 case .failure(let error):
                     state.isLoading = false
                     state.error = error.localizedDescription
-                    state.isShowError = true
                 }
                 return .none
 
-            case .movieCellTapped(let movieId):
-                print("aaaaaaaa")
+            case .movieCellTapped(let movie):
+                router.showDetailsTCA(movie: movie)
                 return .none
 
             case .hideError:
-                state.isShowError = false
+                state.error = ""
                 return .none
             }
         }

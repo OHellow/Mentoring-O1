@@ -14,7 +14,6 @@ struct MovieCell: View {
                 } placeholder: {
                     ProgressView()
                 }
-                //.frame(width: context.size.width, height: context.size.height * 0.8)
                 VStack(alignment: .leading) {
                     Text(viewModel.title)
                         .font(.subheadline)
