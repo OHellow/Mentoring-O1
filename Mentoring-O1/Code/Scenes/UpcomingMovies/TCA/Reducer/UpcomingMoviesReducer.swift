@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import NotificationCenter
 
 @Reducer
 struct UpcomingMoviesReducer {
@@ -29,6 +30,8 @@ struct UpcomingMoviesReducer {
             case .fetchMovies:
                 state.isLoading = true
                 let currentPage = state.currentPage
+                UIApplication.shared.applicationIconBadgeNumber = 0
+                UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                 return .run { send in
                     let result = await worker.fetchMovies(page: currentPage)
                     await send(.handleFetchMoviesResponse(result))

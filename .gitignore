@@ -62,3 +62,7 @@ SourceCode/Resources/Colors/Colors.json
 
 ### Firebase Plists ###
 SourceCode/Firebase
+
+## APNServer
+config.json
+AuthKey/

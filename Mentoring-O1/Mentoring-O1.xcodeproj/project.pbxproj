@@ -167,6 +167,7 @@
 		CA8291FD2899B98D00FA6BCC /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		CA8292052899CEA200FA6BCC /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		CA82920E2899F5A600FA6BCC /* UIImageView+SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+SetImage.swift"; sourceTree = "<group>"; };
+		CA83602F2CEBB7F700CF921C /* Mentoring-O1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mentoring-O1.entitlements"; sourceTree = "<group>"; };
 		CA848DE12ACDF6AD003FE6AA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CA848DFE2ACE37EC003FE6AA /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		CA8953612CB010ED00E973F4 /* MovieDetailsViewControllerTCA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewControllerTCA.swift; sourceTree = "<group>"; };
@@ -682,6 +683,7 @@
 		CAF815D82897236300B7B26E /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				CA83602F2CEBB7F700CF921C /* Mentoring-O1.entitlements */,
 				CA383B4B289583A0002E4408 /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -1133,9 +1135,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Code/SupportingFiles/Mentoring-O1.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 96892H2X4Z;
+				DEVELOPMENT_TEAM = TUMQJ6NHNZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Code/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1147,7 +1150,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mentoringCinema.Mentoring-O1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentoringO1.MentoringO1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1160,9 +1163,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Code/SupportingFiles/Mentoring-O1.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 96892H2X4Z;
+				DEVELOPMENT_TEAM = TUMQJ6NHNZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Code/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1174,7 +1178,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mentoringCinema.Mentoring-O1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentoringO1.MentoringO1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
