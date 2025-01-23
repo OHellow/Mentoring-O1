@@ -19,13 +19,14 @@ final class ScreenFabricUpcomingMovies {
 //    }
 
     static func makeUpcomingSceneTCA() -> UIViewController {
+        let router = UpcomingMoviesRouter()
         let store = Store(initialState: UpcomingMoviesReducer.State()) {
             let apiService = MovieClient()
             let worker = UpcomingNetworkWorker(apiService: apiService)
-            let router = UpcomingMoviesRouter()
             return UpcomingMoviesReducer(worker: worker, router: router)
         }
         let viewController = UpcomingViewController(store: store)
+        router.viewController = viewController
 
         return viewController
     }

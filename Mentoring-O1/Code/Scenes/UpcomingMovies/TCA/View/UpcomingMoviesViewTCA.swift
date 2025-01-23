@@ -6,23 +6,32 @@ struct UpcomingMoviesViewTCA: View {
 
     var body: some View {
         ZStack {
-            ScrollView {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
-                    ForEach(store.movies) { movie in
-                        let cellViewModel = UpcomingMovieCellViewModel(movie: movie) {
-                            store.send(.movieCellTapped(movie))
-                        }
-                        MovieCell(viewModel: cellViewModel)
-                            .id(movie.id)
-                            .onAppear {
-                                if movie == store.movies.last {
-                                    store.send(.fetchMovies)
+            VStack {
+                ScrollView {
+                    WithPerceptionTracking {
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
+                            ForEach(store.movies) { movie in
+                                let cellViewModel = UpcomingMovieCellViewModel(movie: movie) {
+                                    store.send(.movieCellTapped(movie))
                                 }
+                                MovieCell(viewModel: cellViewModel)
+                                    .id(movie.id)
+                                    .onAppear {
+                                        if movie == store.movies.last {
+                                            store.send(.fetchMovies)
+                                        }
+                                    }
+                                    .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.33)
                             }
-                            .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.33)
+                        }
                     }
+                    .padding()
                 }
-                .padding()
+                Button("Schedule Notification") {
+                    store.send(.scheduleNotification)
+                }
+                .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.33)
+                .background(Color.red)
             }
             if store.isLoading {
                 ProgressView()

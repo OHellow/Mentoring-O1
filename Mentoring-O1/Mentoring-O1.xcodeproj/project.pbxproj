@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -80,6 +80,7 @@
 		CA93CDBB299E64E700D9A6B3 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CA93CDBA299E64E700D9A6B3 /* SDWebImage */; };
 		CAC4A64C29416FF800F7F028 /* VerticalFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4A64B29416FF800F7F028 /* VerticalFlowLayout.swift */; };
 		CADB68562ABC664300F994E5 /* LoginVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADB68552ABC664300F994E5 /* LoginVIew.swift */; };
+		CADB7D632D2F426600F9D2DC /* MentoringNSE.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CADB7D5C2D2F426600F9D2DC /* MentoringNSE.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CADFCE6B2C9B9FB20083EE6E /* DefaultAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADFCE6A2C9B9FB20083EE6E /* DefaultAlertView.swift */; };
 		CADFCF222CA6CB910083EE6E /* MovieDetailsViewTCA.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADFCF212CA6CB910083EE6E /* MovieDetailsViewTCA.swift */; };
 		CADFCF262CA6CC510083EE6E /* MovieDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADFCF252CA6CC510083EE6E /* MovieDetailsReducer.swift */; };
@@ -102,7 +103,28 @@
 			remoteGlobalIDString = CA383B392895839F002E4408;
 			remoteInfo = "Mentoring-O1";
 		};
+		CADB7D612D2F426600F9D2DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA383B322895839F002E4408 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CADB7D5B2D2F426600F9D2DC;
+			remoteInfo = MentoringNSE;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CADB7D642D2F426600F9D2DC /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CADB7D632D2F426600F9D2DC /* MentoringNSE.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CA21C4EB294AB3AE0043231F /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
@@ -177,6 +199,7 @@
 		CA9007592A1F822D00803CE0 /* ScreenFabricLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFabricLogin.swift; sourceTree = "<group>"; };
 		CAC4A64B29416FF800F7F028 /* VerticalFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalFlowLayout.swift; sourceTree = "<group>"; };
 		CADB68552ABC664300F994E5 /* LoginVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVIew.swift; sourceTree = "<group>"; };
+		CADB7D5C2D2F426600F9D2DC /* MentoringNSE.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MentoringNSE.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADFCE6A2C9B9FB20083EE6E /* DefaultAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlertView.swift; sourceTree = "<group>"; };
 		CADFCF212CA6CB910083EE6E /* MovieDetailsViewTCA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewTCA.swift; sourceTree = "<group>"; };
 		CADFCF252CA6CC510083EE6E /* MovieDetailsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsReducer.swift; sourceTree = "<group>"; };
@@ -191,6 +214,20 @@
 		CAF815EC2897272800B7B26E /* TopRated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CADB7D672D2F426600F9D2DC /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CADB7D5B2D2F426600F9D2DC /* MentoringNSE */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CADB7D5D2D2F426600F9D2DC /* MentoringNSE */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CADB7D672D2F426600F9D2DC /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = MentoringNSE; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		CA383B372895839F002E4408 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -202,6 +239,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CA62BBD72A7281D7004BCDF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CADB7D592D2F426600F9D2DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -338,6 +382,7 @@
 			children = (
 				CA383B3C2895839F002E4408 /* Code */,
 				CA62BBDB2A7281D7004BCDF1 /* Mentoring-O1Tests */,
+				CADB7D5D2D2F426600F9D2DC /* MentoringNSE */,
 				CA383B3B2895839F002E4408 /* Products */,
 				CA4ECBC42C93046D00E2E937 /* Frameworks */,
 			);
@@ -348,6 +393,7 @@
 			children = (
 				CA383B3A2895839F002E4408 /* Mentoring-O1.app */,
 				CA62BBDA2A7281D7004BCDF1 /* Mentoring-O1Tests.xctest */,
+				CADB7D5C2D2F426600F9D2DC /* MentoringNSE.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -784,10 +830,12 @@
 				CA383B362895839F002E4408 /* Sources */,
 				CA383B372895839F002E4408 /* Frameworks */,
 				CA383B382895839F002E4408 /* Resources */,
+				CADB7D642D2F426600F9D2DC /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CADB7D622D2F426600F9D2DC /* PBXTargetDependency */,
 			);
 			name = "Mentoring-O1";
 			packageProductDependencies = (
@@ -816,6 +864,28 @@
 			productReference = CA62BBDA2A7281D7004BCDF1 /* Mentoring-O1Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		CADB7D5B2D2F426600F9D2DC /* MentoringNSE */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CADB7D682D2F426600F9D2DC /* Build configuration list for PBXNativeTarget "MentoringNSE" */;
+			buildPhases = (
+				CADB7D582D2F426600F9D2DC /* Sources */,
+				CADB7D592D2F426600F9D2DC /* Frameworks */,
+				CADB7D5A2D2F426600F9D2DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CADB7D5D2D2F426600F9D2DC /* MentoringNSE */,
+			);
+			name = MentoringNSE;
+			packageProductDependencies = (
+			);
+			productName = MentoringNSE;
+			productReference = CADB7D5C2D2F426600F9D2DC /* MentoringNSE.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -823,7 +893,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					CA383B392895839F002E4408 = {
@@ -832,6 +902,9 @@
 					CA62BBD92A7281D7004BCDF1 = {
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = CA383B392895839F002E4408;
+					};
+					CADB7D5B2D2F426600F9D2DC = {
+						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
@@ -854,6 +927,7 @@
 			targets = (
 				CA383B392895839F002E4408 /* Mentoring-O1 */,
 				CA62BBD92A7281D7004BCDF1 /* Mentoring-O1Tests */,
+				CADB7D5B2D2F426600F9D2DC /* MentoringNSE */,
 			);
 		};
 /* End PBXProject section */
@@ -869,6 +943,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CA62BBD82A7281D7004BCDF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CADB7D5A2D2F426600F9D2DC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -994,6 +1075,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CADB7D582D2F426600F9D2DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1001,6 +1089,11 @@
 			isa = PBXTargetDependency;
 			target = CA383B392895839F002E4408 /* Mentoring-O1 */;
 			targetProxy = CA62BBDE2A7281D7004BCDF1 /* PBXContainerItemProxy */;
+		};
+		CADB7D622D2F426600F9D2DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CADB7D5B2D2F426600F9D2DC /* MentoringNSE */;
+			targetProxy = CADB7D612D2F426600F9D2DC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1226,6 +1319,69 @@
 			};
 			name = Release;
 		};
+		CADB7D652D2F426600F9D2DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TUMQJ6NHNZ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MentoringNSE/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MentoringNSE;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentoringO1.MentoringO1.MentoringNSE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CADB7D662D2F426600F9D2DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TUMQJ6NHNZ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MentoringNSE/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MentoringNSE;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentoringO1.MentoringO1.MentoringNSE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1252,6 +1408,15 @@
 			buildConfigurations = (
 				CA62BBE02A7281D7004BCDF1 /* Debug */,
 				CA62BBE12A7281D7004BCDF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CADB7D682D2F426600F9D2DC /* Build configuration list for PBXNativeTarget "MentoringNSE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CADB7D652D2F426600F9D2DC /* Debug */,
+				CADB7D662D2F426600F9D2DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

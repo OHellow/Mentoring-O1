@@ -28,11 +28,17 @@ rl.question('Enter the device token: ', (deviceToken) => {
     production: false
   });
 
-  const notification = new apn.Notification({
-    alert: 'Hello Bugfender Testing!',
-    sound: 'default',
-    badge: 1,
-  });
+  const notification = new apn.Notification({  
+   "aps":{  
+      "alert":"AlertTest",
+      "badge":1,
+      "sound":"default",
+      "mutable-content":"1",
+   },
+   "payload": {
+       "mediaUrl":"https://res.cloudinary.com/demo/image/upload/sample.jpg"
+   }
+});
   notification.topic = config.topic; 
 
 apnProvider.send(notification, deviceToken).then(result => {

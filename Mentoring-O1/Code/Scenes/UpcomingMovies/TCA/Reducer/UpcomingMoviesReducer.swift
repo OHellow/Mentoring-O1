@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import NotificationCenter
+import UserNotifications
 
 @Reducer
 struct UpcomingMoviesReducer {
@@ -18,6 +19,7 @@ struct UpcomingMoviesReducer {
         case fetchMovies
         case handleFetchMoviesResponse(Result<MovieResult, RequestError>)
         case movieCellTapped(Movie)
+        case scheduleNotification
         case hideError
     }
 
@@ -51,6 +53,23 @@ struct UpcomingMoviesReducer {
 
             case .movieCellTapped(let movie):
                 router.showDetailsTCA(movie: movie)
+                return .none
+
+            case .scheduleNotification:
+                let content = UNMutableNotificationContent()
+                content.title = "Hello!"
+                content.body = "This is a local notification."
+                content.sound = .default
+
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+                UNUserNotificationCenter.current().add(request) { error in
+                    if let error = error {
+                        print("Error scheduling notification: \(error)")
+                    }
+                }
                 return .none
 
             case .hideError:
